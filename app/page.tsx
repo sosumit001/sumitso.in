@@ -1,7 +1,7 @@
 import React from "react"
 import { Metadata } from "next"
 // import { BlogPosts } from './components/posts'
-import { amstelvar, lato, amstelvar400 } from "./lib/fonts"
+import { amstelvar, lato, imprima } from "./lib/fonts"
 import Image from "next/image"
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ const Page = () => {
 		<div className="min-w-full px-2 text-center  text-3xl md:text-4xl lg:text-5xl">
 			{/* header */}
 			
-			<header className={`${amstelvar.className} my-4 md:my-6 lg:my-10`}>
+			<header className={`${imprima.className} my-4 md:my-6 lg:my-10`}>
 				welcome to my internet home!
 			</header>
 
@@ -25,7 +25,7 @@ const Page = () => {
 					<h2 className={`${lato.className} text-xlsw`}>Hi, I'm Sumit So, and this is the introduction that <strong className={'text-[#91C689]'}>ChatGPT</strong> wrote for me
 					</h2>
 				</div>
-				<div className={`${amstelvar400.className}`}>
+				<div className={`${imprima.className}`}>
 					<p>
 					Hello and welcome! This is Sumit So, I'm glad you're here. This site is my little corner of the internet where I share my journey as a <a className={'underline'} target="blank" href="https://youtube.com/@howdevyou">YouTuber</a> and blogger
 					</p>
