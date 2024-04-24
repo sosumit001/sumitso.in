@@ -4,6 +4,7 @@ import { Metadata } from "next"
 import { Inter } from "next/font/google"
 import Header from "@/components/header"
 import Footer from "./components/footer"
+import Cursor from "./components/cursor/Cursor"
 
 export const metadata : Metadata = {
 	title: 'Sumit So',
@@ -25,6 +26,7 @@ export default function RootLayout({
 		return (
 			<html lang="en">
 			  <body className="antialiased w-full lg:mx-auto">
+				<Cursor></Cursor>
 				<Header/>
 				<main className="flex-auto min-w-0 mt-6 flex flex-col md:px-0">
 				  {children}
