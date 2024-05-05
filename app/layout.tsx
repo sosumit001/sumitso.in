@@ -27,7 +27,6 @@ export default function RootLayout({
 			<html lang="en">
 			  <body className="antialiased w-full lg:mx-auto">
 				<Cursor></Cursor>
-				<Header/>
 				<main className="flex-auto min-w-0 mt-6 flex flex-col md:px-0">
 				  {children}
 				</main>

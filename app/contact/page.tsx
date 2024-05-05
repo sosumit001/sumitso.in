@@ -1,6 +1,7 @@
 import React from "react"
 import { Metadata } from "next"
 import { imprima } from "../lib/fonts"
+import Header from "@/components/header"
 
 export const metadata: Metadata = {
 	title: 'Sumit So | Contact'
@@ -9,6 +10,8 @@ export const metadata: Metadata = {
 const Page = () => {
 	return (
 		<div className="min-w-full px-2 text-center  text-3xl md:text-4xl lg:text-5xl">
+			<Header/>
+			
 			{/* header */}
 			
 			<header className={`${imprima.className} my-4 md:my-6 lg:my-10`}>
