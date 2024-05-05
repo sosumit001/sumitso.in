@@ -57,7 +57,7 @@ export default function Blog({ params }) {
   }
 
   return (
-    <section>
+    <section className='mx-auto lg:w-[70%] md:w-[80%] sm:w-[90%] w-[95%]'>
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -89,7 +89,7 @@ export default function Blog({ params }) {
         </p>
       </div>
       <article className="prose">
-        <CustomMDX source={post.content} />
+        <CustomMDX source={post.content}/>
       </article>
     </section>
   )

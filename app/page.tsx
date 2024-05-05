@@ -1,8 +1,9 @@
 import React from "react"
 import { Metadata } from "next"
-// import { BlogPosts } from './components/posts'
+import { BlogPosts } from './components/posts'
 import { amstelvar, lato, imprima } from "./lib/fonts"
 import Image from "next/image"
+import Header from "./components/header"
 
 export const metadata: Metadata = {
 	title: 'Sumit So.'
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 const Page = () => {
 	return (
 		<div className="min-w-full px-2 text-center  text-3xl md:text-4xl lg:text-5xl">
+			<Header/>
 			{/* header */}
 			
 			<header className={`${imprima.className} my-4 md:my-6 lg:my-10`}>
@@ -54,7 +56,15 @@ const Page = () => {
 					But the good part? I took a 1 BHK apartment with one big-ass room and a really nice kitchen. I can drink beer, play loud music, and sleep without clothes. I can literally do anything. Like, here’s an image of me watching images of the Dalai Lama, which has nothing to do with this 'about' section. That’s cool, isn’t it?
 					</p>
 				</div>
-					<div className={'text-left'}>
+
+				<div className={'text-left'}>
+
+					<h2 className={`${lato.className} text-xlsw`}>Recent Articles</h2>
+					{/* Recent Articles */}
+					<BlogPosts/>
+				</div>
+
+				<div className={'text-left'}>
 
 					<h2 className={`${lato.className} text-xlsw`}>Future plans</h2>
 
