@@ -1,0 +1,33 @@
+---
+title: "A Cartoon Intro: Building React from Scratch"
+publishedAt: '2024-05-10'
+image: "/public/sumo-home.png"
+summary: "A cartoon introduction that helps you understand how to build a working prototype of a React application from scratch without using any tools."
+---
+
+Hey there! This is Sumit.
+
+Welcome to my space on the internet.
+
+You've already seen the title, so in this tutorial, I'll explain what is required to build a React client application from scratch—an application that doesn't rely on tools like `create-react-app` or other developer aids like `vite` or `parcel`.
+
+When I first started learning React, I was curious about what happened in the background. I bootstrapped React apps with CRA or Vite, but what about their structure and internal details? Who builds the React app? How are dependencies managed in a raw setup? So many questions!
+
+### How Does a React Client App Work?
+One thing you should know is that React is used to create Single Page Applications (**SPA**). By "single page," it doesn't mean the website has only one screen. What it actually means is that the entire app is divided into components such as `<Home/>`, `<Contact/>`, `<AboutUs/>`. Each component may have `SubComponents`, and all these components are wrapped inside one big component called `<App/>`.
+![React Image](/blogs/2024/react-building-from-scratch/react-from-scratch-01.png)
+
+### Browser Rendering of React Sites
+When a user visits a React website, the browser plays a crucial role in rendering the application. Initially, it fetches and displays a basic HTML document, often containing just a `root` div element as shown below. Then, bundled JavaScript is loaded inside the HTML document.
+![React Image](/blogs/2024/react-building-from-scratch/react-from-scratch-02.png)
+
+This shared HTML document has two important parts: 
+- **Container**: The `<div>` element with an id of `root` is commonly used in React applications as the primary container where the React application is rendered.
+- **Bundle**: The only bundle file visible within the HTML container of our application is produced by a module bundler such as `Webpack` or `esbuild`. These tools compile and optimize the application's modules and libraries into a single, efficient JavaScript file that is then linked to the HTML container, typically identified by a specific div element like `<div id="root">`. This bundle includes all the necessary code for the application to run, including React components, utility functions, and third-party libraries.
+
+### The Process from React JSX to `bundle.js`
+Take a look at the image displayed below.
+![React Image](/blogs/2024/react-building-from-scratch/react-from-scratch-03.png)
+The JSX (or TSX if using TypeScript) code is transpiled into browser-compatible JavaScript code using tools like Babel or TypeScript. This step is crucial because it allows you to write the latest JavaScript syntax, such as classes, arrow functions, constructors, or destructors, and these transpilers transform that code into JS that the browser can understand.
+
+Next, this code is bundled into `bundle.js` using options like Webpack, Rollup, or esbuild, which consolidate all scripts and dependencies. This bundled file is then linked within the HTML's `<head>` section, enabling dynamic content generation within the `<div id="root">`.
