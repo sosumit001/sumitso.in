@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import { formatDate, getBlogPosts } from '../blogs/utils'
+import { imprima } from '../lib/fonts'
 
 export function BlogPosts() {
   let allBlogs = getBlogPosts()
 
   return (
-    <div>
+    <div className={`flex flex-col gap-4 ${imprima.className}`}>
       {allBlogs
         .sort((a, b) => {
           if (
@@ -18,16 +19,22 @@ export function BlogPosts() {
         .map((post) => (
           <Link
             key={post.slug}
-            className="flex flex-col space-y-1 mb-4"
+            className="flex gap-0 px-3 sm:px-4 md:px-5 lg:px-6 shadow-slate-700 bg-[#fdfff8]"
             href={`/blogs/${post.slug}`}
           >
-            <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-              <p className="text-neutral-600 w-[150px] tabular-nums">
-                {formatDate(post.metadata.publishedAt, false)}
-              </p>
-              <p className="text-neutral-900 tracking-tight">
-                {post.metadata.title}
-              </p>
+            <div className="w-full flex gap-3 flex-col my-4 relative">
+              <div className='flex gap-4 flex-wrap'>
+                <div className="text-neutral-900 tracking-tight">
+                 {post.metadata.title}
+                </div>
+                <div className="text-neutral-500 w-[150px]">
+                  {formatDate(post.metadata.publishedAt, false)}
+                </div>
+              </div>
+
+              <div className="text-neutral-600 tracking-tight">
+                {post.metadata.summary}
+              </div>
             </div>
           </Link>
         ))}

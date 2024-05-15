@@ -1,7 +1,7 @@
 import React from "react"
 import { Metadata } from "next"
 import { BlogPosts } from './components/posts'
-import { amstelvar, lato, imprima } from "./lib/fonts"
+import { lato, imprima, amstelvar400 } from "./lib/fonts"
 import Image from "next/image"
 import Header from "./components/header"
 
@@ -15,7 +15,7 @@ const Page = () => {
 			<Header/>
 			{/* header */}
 			
-			<header className={`${imprima.className} my-4 md:my-6 lg:my-10`}>
+			<header className={`${amstelvar400.className} mb-8`}>
 				welcome to my internet home!
 			</header>
 

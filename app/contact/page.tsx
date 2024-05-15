@@ -1,6 +1,6 @@
 import React from "react"
 import { Metadata } from "next"
-import { imprima } from "../lib/fonts"
+import { amstelvar400, imprima } from "../lib/fonts"
 import Header from "@/components/header"
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ const Page = () => {
 			
 			{/* header */}
 			
-			<header className={`${imprima.className} my-4 md:my-6 lg:my-10`}>
+			<header className={`${amstelvar400.className} mb-8`}>
 				Contact
 			</header>
 
