@@ -1,6 +1,5 @@
 import Header from "@/components/header"
 import { BlogPosts } from "@/components/posts"
-import { imprima } from "@/lib/fonts"
 const Page = () => {
 	return (
 		<div className="min-w-full px-2 text-center w-[95%] md:w-[90%] lg:w-[80%]  text-3xl md:text-4xl lg:text-5xl">
