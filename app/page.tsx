@@ -4,6 +4,7 @@ import { BlogPosts } from './components/posts'
 import { lato, imprima, amstelvar400 } from "./lib/fonts"
 import Image from "next/image"
 import Header from "./components/header"
+import { LatestBlogPost } from "./components/post"
 
 export const metadata: Metadata = {
 	title: 'Sumit So.'
@@ -61,7 +62,7 @@ const Page = () => {
 
 					<h2 className={`${lato.className} text-xlsw`}>Recent Articles</h2>
 					{/* Recent Articles */}
-					<BlogPosts/>
+					<LatestBlogPost/>
 				</div>
 
 				<div className={'text-left'}>
