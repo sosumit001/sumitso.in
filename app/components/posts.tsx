@@ -20,7 +20,7 @@ export function BlogPosts() {
         .map((post) => (
           <Link
             key={post.slug}
-            className="flex gap-0 px-3 flex-wrap sm:px-4 md:px-5 lg:px-6 shadow-slate-700 bg-[#ededed]"
+            className="flex py-2 lg:py-4 px-3 flex-wrap sm:px-4 md:px-5 lg:px-6 shadow-slate-700 bg-[#ededed]"
             href={`/blogs/${post.slug}`}
           >
             <div className="w-full flex items-center flex-wrap my-2 relative">
@@ -33,7 +33,7 @@ export function BlogPosts() {
                     <div>
                       {/* title */}
                       <div className='flex gap-2 flex-col max-sm:gap-1'>
-                        <div className="text-neutral-900 max-sm:px-2 tracking-tight">
+                        <div className="text-neutral-900 tracking-tight">
                           {post.metadata.title}
                         </div>
                         <div className="text-neutral-400 w-[150px]">
@@ -41,7 +41,7 @@ export function BlogPosts() {
                         </div>
                       </div>
                       {/* summary */}
-                      <div className='text-left mt-3 pr-16 max-sm:px-2'>
+                      <div className='text-left mt-3 pr-16 max-sm:pr-0'>
                         {post.metadata.summary}
                       </div>
                     </div>
