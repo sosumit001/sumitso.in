@@ -18,7 +18,7 @@ export function LatestBlogPost() {
     <div className={`flex flex-col gap-4 ${imprima.className}`}>
       <Link
         key={latestBlog.slug}
-        className="flex gap-0 px-3 flex-wrap sm:px-4 md:px-5 lg:px-6 shadow-slate-700 bg-[#ededed]"
+        className="flex gap-0 px-3 py-2 lg:py-4 flex-wrap sm:px-4 md:px-5 lg:px-6 shadow-slate-700 bg-[#ededed]"
         href={`/blogs/${latestBlog.slug}`}
       >
         <div className="w-full flex items-center flex-wrap my-2 relative">
@@ -28,7 +28,7 @@ export function LatestBlogPost() {
               <div>
                 {/* title */}
                 <div className='flex gap-2 flex-col max-sm:gap-1'>
-                  <div className="text-neutral-900 max-sm:px-2 tracking-tight">
+                  <div className="text-neutral-900 tracking-tight">
                     {latestBlog.metadata.title}
                   </div>
                   <div className="text-neutral-400 w-[150px]">
@@ -36,7 +36,7 @@ export function LatestBlogPost() {
                   </div>
                 </div>
                 {/* summary */}
-                <div className='text-left mt-3 pr-16 max-sm:px-2'>
+                <div className='text-left mt-3 pr-16 max-sm:pr-0'>
                   {latestBlog.metadata.summary}
                 </div>
               </div>
