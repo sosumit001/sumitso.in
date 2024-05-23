@@ -10,7 +10,7 @@ const acme = Abel({
 const Header = () => {
 
 	return (
-		<header id="site-header" className={`text-lg uppercase py-6 ${acme.className} flex justify-center text-xl items-center gap-[18px] `}>
+		<header id="site-header" className={`bg-white text-lg uppercase py-6 ${acme.className} flex justify-center text-xl items-center gap-[18px] `}>
 			<Link className={` px-3 text-center`} href={'/'}> Home </Link>
 			<Link className={` px-3 text-center`} href={'/blogs'}> blogs </Link>
 			<Link className={` px-3 text-center`} href={'/contact'}> Contact </Link>

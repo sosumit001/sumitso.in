@@ -58,7 +58,7 @@ export default function Blog({ params }) {
   }
 
   return (
-    <section className='mx-auto lg:w-[70%] md:w-[80%] sm:w-[90%] w-[95%]'>
+    <section className='bg-white mx-auto py-6 px-6 sm:px-8 md:px-10 lg:px-12 lg:w-[70%] md:w-[80%] sm:w-[90%] w-[100%]'>
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -89,7 +89,7 @@ export default function Blog({ params }) {
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
-      <article className="prose">
+      <article className="prose lg:text-xl text-[1.1rem] mx-auto max-w-none">
         <CustomMDX source={post.content}/>
         <Footer/>
       </article>

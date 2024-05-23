@@ -3,7 +3,7 @@ import Header from "@/components/header"
 import { BlogPosts } from "@/components/posts"
 const Page = () => {
 	return (
-		<div className="min-w-full px-2 text-center w-[95%] md:w-[90%] lg:w-[80%]  text-3xl md:text-4xl lg:text-5xl">
+		<div className="bg-white min-w-full px-2 text-center w-[95%] md:w-[90%] lg:w-[80%]  text-3xl md:text-4xl lg:text-5xl">
 			<Header/>
 			{/* article */}
 			<article className={'prose-lg prose-p:text-xl max-w-5xl mx-auto py-1'}>

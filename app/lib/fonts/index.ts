@@ -9,13 +9,13 @@ const imprima = Imprima({
 
 const amstelvar = localFont({
 	src: '../../fonts/Amstelvar-Roman[wdth,wght,opsz].ttf',
-	weight: '900',
+	weight: '400',
 	display: 'swap',
 })
 
 const amstelvar400 = localFont({
 	src: '../../fonts/Amstelvar-Roman[wdth,wght,opsz].ttf',
-	weight: '400',
+	weight: '800',
 	display: 'swap'
 })
 

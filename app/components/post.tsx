@@ -18,7 +18,7 @@ export function LatestBlogPost() {
     <div className={`flex flex-col gap-4 ${imprima.className}`}>
       <Link
         key={latestBlog.slug}
-        className="flex gap-0 px-3 py-2 lg:py-4 flex-wrap sm:px-4 md:px-5 lg:px-6 shadow-slate-700 bg-[#ededed]"
+        className="flex gap-0 px-3 py-2 lg:py-4 flex-wrap sm:px-4 md:px-5 lg:px-6 shadow-slate-700 bg-white"
         href={`/blogs/${latestBlog.slug}`}
       >
         <div className="w-full flex items-center flex-wrap my-2 relative">

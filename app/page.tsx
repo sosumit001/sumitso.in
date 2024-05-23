@@ -1,7 +1,6 @@
 import React from "react"
 import { Metadata } from "next"
-import { BlogPosts } from './components/posts'
-import { lato, imprima, amstelvar400 } from "./lib/fonts"
+import { lato, amstelvar400, amstelvar } from "./lib/fonts"
 import Image from "next/image"
 import Header from "./components/header"
 import { LatestBlogPost } from "./components/post"
@@ -13,23 +12,19 @@ export const metadata: Metadata = {
 
 const Page = () => {
 	return (
-		<div className="min-w-full px-2 text-center  text-3xl md:text-4xl lg:text-5xl">
+		<div className="min-w-full px-2 text-center ">
 			<Header/>
 			{/* header */}
 			
-			<header className={`${amstelvar400.className} mb-8`}>
-				welcome to my internet home!
+			<header className={`${amstelvar400.className} leading-tight lg:text-7xl md:text-6xl text-5xl w-[100%] px-6 sm:px-16 md:px-32 lg:px-40 mx-auto bg-white py-10 md:py-14 lg:py-16`}>
+			Sumit So’s Blog: Thoughts, Ideas, and Reflections
 			</header>
 
 			{/* article */}
-			<article className={'prose-lg prose-p:text-xl max-w-5xl mx-auto px-4'}>
+			<article className={'prose-lg lg:text-xl text-[16px]  max-w-5xl mx-auto px-4'}>
 				{/* about me */}
-				<div className={'text-left px-2 sm:px-4 md:px-8 lg:px-14 py-1 bg-[#ededed]'}>
-				<div className={'text-left'}>
-					<h2 className={`${lato.className} text-xlsw`}>Hi, I'm Sumit So, and this is the introduction that <strong className={'text-[#91C689]'}>ChatGPT</strong> wrote for me
-					</h2>
-				</div>
-				<div className={`${imprima.className}`}>
+				<div className={'text-left px-2 sm:px-4 md:px-8 lg:px-14 bg-[#ededed] pt:10 md:pt-12 lg:pt-16'}>
+				<div className={`${amstelvar.className}`}>
 					<p>
 					Hello and welcome! This is Sumit So, I'm glad you're here. This site is my little corner of the internet where I share my journey as a <a className={'underline'} target="blank" href="https://youtube.com/@howdevyou">YouTuber</a> and blogger
 					</p>
@@ -44,13 +39,13 @@ const Page = () => {
 					About me, huh? Alright, let’s see. It’s the 19th of April, 2024, and as I write this article, I’m 23. Just finished my engineering degree—four years wasted in college. 
 					Right now, I’m an intern doing a dumb job as a Full Stack Developer at some freaking startup. 
 					</p>
-					<div className="relative py-6 rounded-xl px-4">
+					<div className="relative py-6 bg-black">
 					<Image
 						src={'/sumit-home.png'}
 						alt="Sumit So : Home Page"
-						width={700}
+						width={800}
 						height={600}
-						style={{margin:'auto', borderRadius: '10px'}}
+						style={{margin:'auto'}}
 						priority
 					/>
 					</div>
@@ -78,7 +73,7 @@ const Page = () => {
 						alt="Future Plan's"
 						width={200}
 						height={200}
-						style={{margin:'auto', borderRadius: '10px'}}
+						style={{margin:'auto'}}
 						priority
 					/>
 					</div>

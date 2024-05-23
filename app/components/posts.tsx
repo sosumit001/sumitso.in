@@ -20,7 +20,7 @@ export function BlogPosts() {
         .map((post) => (
           <Link
             key={post.slug}
-            className="flex py-2 lg:py-4 px-3 flex-wrap sm:px-4 md:px-5 lg:px-6 shadow-slate-700 bg-[#ededed]"
+            className="flex py-2 lg:py-4 px-3 flex-wrap sm:px-4 md:px-5 lg:px-6 shadow-slate-700 bg-white"
             href={`/blogs/${post.slug}`}
           >
             <div className="w-full flex items-center flex-wrap my-2 relative">

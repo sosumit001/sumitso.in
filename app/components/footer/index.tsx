@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
 	return ( 
-		<div className={'flex justify-between max-w-4xl items-center m-auto h-32 px-8'}>
+		<div className={'flex justify-between max-w-4xl items-center m-auto h-32'}>
 			{/* left */}
 			<div className={'flex gap-2'}>
 				<span>©</span>
