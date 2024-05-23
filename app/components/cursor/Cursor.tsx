@@ -27,8 +27,8 @@ const Cursor: React.FC = () => {
         cursorRef.current.style.display = displayStyle;
         dotRef.current.style.display = displayStyle;
 
-        cursorRef.current.style.transform = `translate(${x - cursorRef.current.clientWidth / 2}px, ${y - cursorRef.current.clientHeight / 2}px)`;
-        dotRef.current.style.transform = `translate(${x - dotRef.current.clientWidth / 2}px, ${y - dotRef.current.clientHeight / 2}px)`;
+        cursorRef.current.style.transform = `translate(${x - cursorRef.current.clientWidth / 2}px, ${y - cursorRef.current.clientHeight / 2 - 20}px) rotate(45deg)`;
+        dotRef.current.style.transform = `translate(${x - dotRef.current.clientWidth / 2}px, ${y - dotRef.current.clientHeight / 2}px) rotate(45deg)`;
       }
     };
 
@@ -65,12 +65,12 @@ const Cursor: React.FC = () => {
       <div
         ref={dotRef}
         className={`fixed pointer-events-none z-50 ease-linear duration-50 rounded-full w-1 h-1 bg-${cursorColor} opacity-40 lg:block md:block hidden`}
-        style={{ transform: 'translate(-50%, -50%)' }}
+        style={{ transform: 'translate(-50%, -50%) rotate(45deg)' }}
       />
       <div
         ref={cursorRef}
         className={`p-0 fixed pointer-events-none ease-linear duration-200 rounded-full w-12 h-12 border-2 bg-black opacity-5 border-${cursorColor} lg:block md:block hidden`}
-        style={{ transform: 'translate(-50%, -50%)' }}
+        style={{ transform: 'translate(-50%, -50%) rotate(45deg)' }}
       >
         <div
           className={`w-20 h-20 ${clicked ? "scale-100 opacity-10" : "scale-0 opacity-0"} rounded-full bg-${cursorColor} ease-out transition-all duration-500 -z-10 lg:block md:block hidden`}
