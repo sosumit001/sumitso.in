@@ -30,7 +30,6 @@ export default function RootLayout({
 				<main className="flex-auto min-w-0 mt-6 flex flex-col md:px-0">
 				  {children}
 				</main>
-				<Footer/>
 			  </body>
 			</html>
 	)

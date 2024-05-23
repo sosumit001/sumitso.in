@@ -1,0 +1,48 @@
+---
+title: "Part 01: React SSR From Scratch!"
+publishedAt: '2024-05-22'
+image: "/public/sumo-home.png"
+summary: "Learning how to build a React SSR application from scratch will help in understanding the basic concepts of Server-Side Rendering."
+---
+
+Hey there!
+
+This is Sumit So. Welcome to my space on the internet.
+![React Image](/blogs/thumbnails/react-ssr-part-01.png)
+
+A few days ago, I wrote a blog titled [A Cartoon Guide: How React Clients Operate!](http://localhost:3000/blogs/a-cartoon-intro-building-react-from-scratch). And the conclusion was, whenever a user tries to access a webpage in React Client Application, the server sends an empty `HTML file`. Once that empty HTML is downloaded, then the browser downloads the bundled JavaScript files. Wait, what?
+
+{/* ![React Image](/blogs/2024/react-ssr-part-01/react-ssr-part-01-1.png) */}
+
+Let me explain: we write React components using `JSX` or `TSX` syntax, which is transpiled into JavaScript. Eventually, all our JavaScript files are bundled into one or more files. These bundled files are linked with an empty `HTML file`, sometimes called an `app shell`.
+
+If I had to summarize everything in one picture then, take a look at image below
+
+
+![React Image](/blogs/2024/react-building-from-scratch/react-from-scratch-03.png)
+
+### Disadvantages of Client-Side Rendering
+There are two main disadvantage of rendering React Components on Client.
+- **Performance**: Client-side rendering can lead to longer initial load times because the browser needs to download and execute JavaScript before rendering the page.
+- **SEO**: Search engines may struggle to index content correctly since the HTML is not fully rendered until JavaScript is executed.
+
+### Server-Side Rendering (SSR): Overcoming Client-Side Rendering Problems
+
+What we've learned so far is that in a React Client Application, our browser is doing all the hard work. It is rendering React components, building and parsing HTML, and executing almost all the JavaScript that exists, which is not great, is it?
+
+Now, what if we reduce the amount of JavaScript executed by the browser? What if we send an HTML page that already holds rendered React components?
+
+Take a look at image below - 
+
+![React Image](/blogs/2024/react-ssr-part-01/react-ssr-part-01-1.png)
+
+This image illustrates the server-side rendering (SSR) process in React. The React component is converted to JavaScript, then rendered to an HTML string on the server using one of `ReactDOMServer` method. This HTML is sent to the client, where it is displayed immediately, and React takes over to make the page interactive.
+
+So, those two Problems we discussed earlier can easily be solved with Server-Side Rendering
+
+Server-side rendering (SSR) addresses the performance and SEO issues associated with client-side rendering. With SSR, React components are rendered on the server, and a fully rendered HTML page is sent to the client. This ensures faster initial load times and better SEO optimization.
+
+
+
+
+

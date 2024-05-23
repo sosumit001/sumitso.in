@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { CustomMDX } from '@/components/mdx'
 import { formatDate, getBlogPosts } from '@/blogs/utils'
 import { baseUrl } from '@/sitemap'
+import Footer from '@/components/footer'
 
 export async function generateStaticParams() {
   let posts = getBlogPosts()
@@ -90,6 +91,7 @@ export default function Blog({ params }) {
       </div>
       <article className="prose">
         <CustomMDX source={post.content}/>
+        <Footer/>
       </article>
     </section>
   )

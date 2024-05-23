@@ -1,3 +1,4 @@
+import Footer from "@/components/footer"
 import Header from "@/components/header"
 import { BlogPosts } from "@/components/posts"
 const Page = () => {
@@ -8,6 +9,7 @@ const Page = () => {
 			<article className={'prose-lg prose-p:text-xl max-w-5xl mx-auto py-1'}>
 				<div className={'text-left px-2 sm:px-4 md:px-8 lg:px-14'}>	
 					<BlogPosts/>
+					<Footer/>
 				</div>
 			</article>
 		</div>

@@ -5,6 +5,7 @@ import { lato, imprima, amstelvar400 } from "./lib/fonts"
 import Image from "next/image"
 import Header from "./components/header"
 import { LatestBlogPost } from "./components/post"
+import Footer from "./components/footer"
 
 export const metadata: Metadata = {
 	title: 'Sumit So.'
@@ -21,9 +22,9 @@ const Page = () => {
 			</header>
 
 			{/* article */}
-			<article className={'prose-lg prose-p:text-xl max-w-5xl mx-auto px-4 py-1 bg-[#ededed]'}>
+			<article className={'prose-lg prose-p:text-xl max-w-5xl mx-auto px-4'}>
 				{/* about me */}
-				<div className={'text-left px-2 sm:px-4 md:px-8 lg:px-14'}>
+				<div className={'text-left px-2 sm:px-4 md:px-8 lg:px-14 py-1 bg-[#ededed]'}>
 				<div className={'text-left'}>
 					<h2 className={`${lato.className} text-xlsw`}>Hi, I'm Sumit So, and this is the introduction that <strong className={'text-[#91C689]'}>ChatGPT</strong> wrote for me
 					</h2>
@@ -90,6 +91,7 @@ const Page = () => {
 
 				</div>
 				
+				<Footer/>
 			</article>
 	  	</div>
 	)
