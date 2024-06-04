@@ -1,0 +1,205 @@
+---
+title: "Compile C/C++ to WebAssembly: Ultimate 2024 Guide with Emscripten and LLVM"
+publishedAt: '2024-06-19'
+image: "/public/sumo-home.png"
+summary: "Learn how to compile C/C++ code into WebAssembly with our comprehensive guide. Discover tools like Emscripten and LLVM for faster web applications."
+---
+
+# Compiling Low-Level Languages like C/C++ into WebAssembly: A Comprehensive Guide
+<YouTube id = "L4Gqfte89gc" />
+WebAssembly (WASM) has emerged as a powerful tool that extends the capabilities of web browsers beyond what JavaScript can offer. It enables the execution of code written in low-level languages such as C, C++, and Rust, directly in the browser, bringing performance close to native speed. This blog post explores compiling low-level languages into WebAssembly, focusing on tools such as Emscripten and LLVM.
+
+WebAssembly's purpose lies in its name: it provides a binary instruction format for a stack-based virtual machine, which can run in web browsers. Combining low-level languages with WebAssembly allows developers to create more performant web applications, use existing libraries, and port legacy codebases to the web.
+
+## Tools Used
+
+### Emscripten
+
+Emscripten acts as a bridge, transforming code written in C/C++ into WebAssembly. It consists of two main parts: Emscripten itself and emsdk. Emscripten provides various header files that can be included in low-level code to enable the utilization of Web APIs. The emsdk (Emscripten SDK) manages the tools and libraries required for Emscripten to function properly, offering scripts for compiling C/C++ programs into WebAssembly.
+
+### LLVM
+
+LLVM (Low-Level Virtual Machine) is an essential tool in the compilation process. It enables the creation of intermediaries and final output code. The compilation process involves two main steps: front-end and back-end. The front-end step converts C/C++ code into intermediate code using Clang (a compiler front-end for the C family of languages), and the back-end step involves optimizing this intermediate code and compiling it into WebAssembly using LLVM.
+
+## Key WebAssembly Concepts
+
+### Modules
+
+A WebAssembly module contains the compiled code from low-level languages. It is represented as a `.wasm` file that browsers can execute.
+
+### Memory
+
+WebAssembly memory is a linear memory that can be accessed by both WebAssembly code and JavaScript. It operates in units called pages, each equivalent to 64 KB. JavaScript typed arrays provide a mechanism to read and write raw binary data from this memory.
+
+### Tables
+
+Tables in WebAssembly are akin to arrays and are used to store functions. Each slot in a table can hold a different function, allowing function calls to be made by their indices.
+
+### Instances
+
+An instance in WebAssembly is a combination of the module, memory, and tables. It represents an active WebAssembly module that is ready to execute.
+
+## Hello World Example
+
+Let's start with a rudimentary example by compiling a simple "Hello World" program written in C.
+
+```c
+// hello_world.c
+#include <stdio.h>
+
+int main() {
+    printf("Hello World\n");
+    return 0;
+}
+```
+
+### Compiling with GCC/G++
+
+To compile this C program with GCC or G++, you would use:
+
+```sh
+gcc hello_world.c -o hello_world
+```
+
+Running the resulting executable file displays the "Hello World" message in the terminal.
+
+### Compiling with Emscripten (emcc)
+
+First, activate the Emscripten environment using emsdk:
+
+```sh
+emsdk activate latest
+source ./emsdk_env.sh
+```
+
+Compile the C program into WebAssembly with the following command:
+
+```sh
+emcc hello_world.c -o hello_world.html
+```
+
+This command generates an HTML file that includes the WebAssembly module. Running this HTML file in a browser displays the "Hello World" message.
+
+## Instantiating a WebAssembly Module
+
+After generating the WebAssembly file, the next step is to instantiate it using JavaScript.
+
+Create a new JavaScript file, `index.js`:
+
+```javascript
+fetch('hello_world.wasm')
+  .then(response => response.arrayBuffer())
+  .then(bytes => WebAssembly.instantiate(bytes, {}))
+  .then(results => {
+    document.body.appendChild(
+      document.createTextNode('WebAssembly Loaded')
+    );
+  });
+```
+
+This script fetches the `.wasm` file, converts it to an array buffer, and instantiates the WebAssembly module.
+
+### Using WebAssembly APIs
+
+The `WebAssembly.instantiate` function creates an instance of the module. The import object is usually an empty object, but it can also include functions or memory.
+
+```javascript
+const memory = new WebAssembly.Memory({ initial: 1, maximum: 2 });
+const importObject = { env: { memory } };
+
+fetch('hello_world.wasm')
+  .then(response => response.arrayBuffer())
+  .then(bytes => WebAssembly.instantiate(bytes, importObject))
+  .then(results => {
+    const { instance } = results;
+    instance.exports._start();
+  });
+```
+
+## Running the WebAssembly Module
+
+Using the instantiated WebAssembly module, you can call exported functions from JavaScript.
+
+```javascript
+fetch('add.wasm')
+  .then(response => response.arrayBuffer())
+  .then(bytes => WebAssembly.instantiate(bytes, {}))
+  .then(results => {
+    const add = results.instance.exports.add;
+    console.log('2 + 3 =', add(2, 3));
+  });
+```
+
+In this example, the `add` function defined in the C code is called from JavaScript, demonstrating the interoperability between the two.
+
+## More Complex Example
+
+Let's consider a more complex C program that involves an add function:
+
+```c
+// add.c
+#include <emscripten.h>
+
+EMSCRIPTEN_KEEPALIVE
+int add(int a, int b) {
+    return a + b;
+}
+```
+
+Compile this C program into a `.wasm` file without a main entry point:
+
+```sh
+emcc add.c -o add.wasm -s STANDALONE_WASM
+```
+
+### Memory Management
+
+WebAssembly memory is linear, allowing efficient reading and writing of binary data. Each page of memory is 64 KB, and memory can grow or shrink based on the requirements of the WebAssembly module.
+
+## Tables and Function Imports
+
+Tables store functions and allow their retrieval by index. You can import functions from JavaScript into WebAssembly, enabling complex interactions between the two.
+
+```javascript
+const importObject = {
+  env: {
+    imported_func: function(arg) {
+      console.log(arg);
+    }
+  }
+};
+
+fetch('example.wasm')
+  .then(response => response.arrayBuffer())
+  .then(bytes => WebAssembly.instantiate(bytes, importObject))
+  .then(results => {
+    results.instance.exports.call_imported_func();
+  });
+```
+
+## Advanced Topics
+
+Advanced features such as SharedArrayBuffer, SIMD (Single Instruction, Multiple Data), and debugging techniques further enhance WebAssembly's capabilities. These topics go beyond the scope of this introductory guide but are crucial for optimizing performance and troubleshooting complex WebAssembly applications.
+
+### Threads and SharedArrayBuffer
+
+Utilizing threads with WebAssembly can vastly improve performance, especially for compute-heavy tasks.
+
+### SIMD and Performance Optimizations
+
+SIMD instructions allow parallel processing of data, speeding up tasks such as graphics processing.
+
+### Debugging WebAssembly
+
+Debugging tools such as browser developer tools and specialized WebAssembly debuggers help identify and fix issues in WebAssembly code.
+
+## Resources and Further Learning
+
+To delve deeper into WebAssembly and Emscripten, consider the following resources:
+
+- [Emscripten Documentation](https://emscripten.org/docs/)
+- [WebAssembly Documentation](https://webassembly.org/docs/getting-started/)
+
+These resources provide comprehensive guides and tutorials to help you master the art of compiling low-level languages into WebAssembly.
+
+Understanding the process of compiling low-level languages into WebAssembly opens up new possibilities for web development. With tools like Emscripten and LLVM, developers can harness the power and performance of C/C++ in the browser, bringing a new dimension to web applications. As the WebAssembly ecosystem continues to evolve, mastering these techniques will be invaluable for building high-performance web applications.
