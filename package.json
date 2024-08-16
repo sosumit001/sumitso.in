@@ -30,6 +30,8 @@
     "tailwind-highlightjs": "^2.0.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@tailwindcss/typography": "^0.5.12",
     "@types/node": "^20.12.7",
     "autoprefixer": "^10.4.19",
