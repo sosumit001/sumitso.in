@@ -23,7 +23,7 @@ export default function RootLayout({
   }) {
 		return (
 			<html lang="en">
-			  <body className="antialiased bg-[#ededed] w-full lg:mx-auto">
+			  <body className="antialiased bg-[#f6f5f1] w-full lg:mx-auto">
 				<Cursor></Cursor>
 				<main className="flex-auto min-w-0 flex flex-col md:px-0">
 				  {children}

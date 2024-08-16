@@ -20,7 +20,7 @@ const Header = () => {
 	}
 
 	return (
-		<header id="site-header" className={`text-lg py-6 ${acme.className} bg-white flex flex-col justify-center text-xl items-center gap-[18px] `}>
+		<header id="site-header" className={`text-lg max-md:py-[1.5px] py-3 ${acme.className} bg-white flex flex-col justify-center text-xl items-center gap-[18px] `}>
 			{/* for large image */}
 			<div className=" w-full max-md:hidden flex items-center justify-between px-4 bg-white">
 				{/* icon */}
@@ -28,8 +28,9 @@ const Header = () => {
 					<Image
 						src={'/icon/icon.png'}
 						alt="home png"
-						height={100}
-						width={80}
+						height={67}
+						width={55}
+						style={{width: 'auto'}}
 					/>
 					<div className={`text-gray-600 ${amstelvar.className}`}>welcome to my internet home</div>
 				</div>
@@ -47,19 +48,20 @@ const Header = () => {
 					<Image
 						src={'/icon/icon.png'}
 						alt="home png"
-						height={75}
-						width={67}
+						height={64}
+						width={48}
+						style={{width: 'auto'}}
 					/>
 				</div>
 
 				{/* menu */}
-				<div onClick={toggleMenuButton} className="flex flex-col gap-1 p-4 items-center justify-center cursor-pointer">
+				<div onClick={toggleMenuButton} className="flex flex-col p-4 items-center justify-center cursor-pointer">
 					<div className="flex gap-1 items-center justify-center">
-						<div className="w-2 h-2 rounded-full bg-black"></div>
-						<div className="w-2 h-2 rounded-full bg-black"></div>
-						<div className="w-2 h-2 rounded-full bg-black"></div>
+						<div className="w-[5px] h-[5px] rounded-full bg-slate-500"></div>
+						<div className="w-[5px] h-[5px] rounded-full bg-slate-500"></div>
+						<div className="w-[5px] h-[5px] rounded-full bg-slate-500"></div>
 					</div>
-					<div className="text-xs select-none">menu</div>
+					<div className="text-sm select-none">menu</div>
 				</div>
 
 			</div>
