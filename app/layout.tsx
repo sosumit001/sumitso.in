@@ -24,7 +24,9 @@ export default function RootLayout({
 			<html lang="en">
 			  <body className="antialiased bg-[#f6f5f1] w-full lg:mx-auto">
 				<main className="flex-auto min-w-0 flex flex-col md:px-0">
-				  {children}
+					<div className="min-w-full px-2 text-center" >
+				  		{children}
+					</div>
 				</main>
 			  </body>
 			</html>

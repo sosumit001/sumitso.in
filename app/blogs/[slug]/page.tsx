@@ -3,7 +3,6 @@ import { CustomMDX } from '@/components/mdx'
 import { formatDate, getBlogPosts } from '@/blogs/utils'
 import { baseUrl } from '@/sitemap'
 import Footer from '@/components/footer'
-import Header from '@/components/header'
 import Link from 'next/link'
 
 export async function generateStaticParams() {
