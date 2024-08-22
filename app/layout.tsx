@@ -2,7 +2,6 @@ import React from "react"
 import './global.css'
 import { Metadata } from "next"
 import { Inter } from "next/font/google"
-import Cursor from "./components/cursor/Cursor"
 
 export const metadata : Metadata = {
 	title: 'Sumit So',
@@ -24,7 +23,6 @@ export default function RootLayout({
 		return (
 			<html lang="en">
 			  <body className="antialiased bg-[#f6f5f1] w-full lg:mx-auto">
-				<Cursor></Cursor>
 				<main className="flex-auto min-w-0 flex flex-col md:px-0">
 				  {children}
 				</main>
