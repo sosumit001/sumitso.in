@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from '@/components/mdx'
-import { formatDate, getBlogPosts } from '@/blogs/utils'
+import { getBlogPosts } from '@/blogs/utils'
+import { formatDate } from '@/lib/utils'
 import { baseUrl } from '@/sitemap'
 import Footer from '@/components/footer'
 import Link from 'next/link'
@@ -59,7 +60,7 @@ export default function Blog({ params }) {
   }
 
   return (
-    <section className='bg-white mx-auto text-left py-6 px-6 sm:px-8 md:px-10 lg:px-12 lg:w-[70%] md:w-[80%] sm:w-[90%] w-[100%]'>
+    <section className='mx-auto text-left py-6 px-6 sm:px-8 md:px-10 lg:px-12 lg:w-[70%] md:w-[80%] sm:w-[90%] w-[100%]'>
       <div className='py-6 text-blue-500'>
         <Link href={'/blogs'}>blogs</Link>
       </div>

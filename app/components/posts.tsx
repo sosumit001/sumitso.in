@@ -18,7 +18,8 @@ export function BlogPosts() {
           return 1
         })
         .map((post) => (
-          <BlogPost 
+          <BlogPost
+            key={post.metadata.title}
             slug={post.slug} 
             title={post.metadata.title} 
             publishedAt={post.metadata.publishedAt} 

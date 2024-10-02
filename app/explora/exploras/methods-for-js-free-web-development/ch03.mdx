@@ -1,0 +1,66 @@
+---
+title: "Client Side Alternatives"
+summary: "This is chapter two"
+---
+
+#### 1. HTMX
+
+<p>&nbsp;</p>
+
+HTMX is a powerful tool that allows developers to create dynamic web applications with minimal reliance on JavaScript. Here are some key points on how HTMX can significantly reduce JavaScript usage in frontend development:
+
+<p>&nbsp;</p>
+
+- **Hypermedia-Driven Applications** : HTMX enables the creation of hypermedia-driven web applications that utilize standard HTML forms and anchor tags for server interactions. This approach allows for the exchange of HTML over HTTP, which means that developers can build applications without needing extensive JavaScript for basic functionalities like CRUD operations.
+
+<p>&nbsp;</p>
+
+- **AJAX Functionality** :  By simply adding attributes like hx-boost to HTML elements, HTMX can enhance links and forms to work with AJAX. This means that when a user interacts with these elements, the page does not need to refresh entirely, providing a smoother user experience without the need for JavaScript to handle these interactions.
+
+<p>&nbsp;</p>
+
+- **Minimal Learning Curve** : HTMX is designed to stay close to existing web standards, which minimizes the conceptual load for developers. This means that developers familiar with HTML can easily adopt HTMX without needing to learn complex JavaScript frameworks.
+
+<p>&nbsp;</p>
+
+- **Fallback for Non-JavaScript Users** : One of the significant advantages of HTMX is its ability to fallback to standard HTML behavior if JavaScript is not enabled. This ensures that applications remain functional for all users, regardless of their browser settings.
+
+<p>&nbsp;</p>
+
+- **Integration with Other Libraries** : While HTMX provides a robust solution for reducing JavaScript, it also plays well with other libraries. This means that when more complex frontend functionalities are needed, developers can easily integrate additional libraries without losing the benefits of HTMX.
+
+<p>&nbsp;</p>
+
+In conclusion, HTMX offers a compelling alternative to traditional JavaScript-heavy frameworks by allowing developers to create dynamic, responsive web applications using primarily HTML. This approach not only simplifies development but also enhances performance and accessibility for users.
+
+<p>&nbsp;</p>
+
+#### 2. WebAssembly
+
+<p>&nbsp;</p>
+
+WebAssembly (Wasm) presents a promising alternative to JavaScript for client-side applications, potentially enhancing performance and reducing reliance on JavaScript. By enabling languages like C, C++, and Rust to run in the browser, WebAssembly can execute complex computations more efficiently.
+
+<p>&nbsp;</p>
+
+#### Performance Benefits
+
+<p>&nbsp;</p>
+
+- WebAssembly aims for performance parity with native code, achieving significant speed improvements for computationally intensive tasks <SomeT text="(Jangda et al., 2019)" href="https://typeset.io/pdf/not-so-fast-analyzing-the-performance-of-webassembly-vs-2z7wk5brp3.pdf" />.
+
+<p>&nbsp;</p>
+
+- Applications compiled to WebAssembly can run faster than their JavaScript counterparts, particularly in scenarios requiring heavy processing, such as gaming and data visualization <SomeT text="(Ménétrey et al., 2021)" href="https://arxiv.org/pdf/2103.15860" />.
+
+<p>&nbsp;</p>
+
+#### Example Applications
+
+<p>&nbsp;</p>
+
+- **Gaming** : WebAssembly is used in game engines to deliver high-performance graphics and physics simulations, reducing load times and improving responsiveness.
+
+<p>&nbsp;</p>
+
+- **Data Processing** : Applications like SQLite can be embedded and executed securely within a WebAssembly runtime, allowing for efficient data manipulation without heavy JavaScript overhead.

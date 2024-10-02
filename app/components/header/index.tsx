@@ -76,13 +76,37 @@ const Header = () => {
 
 			</div>
 			{isMenuClicked && (
-				<div className="fixed hidden max-md:flex inset-0 bg-white z-50 flex-col justify-center items-center overflow-y-hidden">
-					<div className={`cursor-pointer absolute top-3 w-[90%] py-2 text-right`} onClick={toggleMenuButton}>x <b>close</b></div>
-					<Link className={`px-3 text-center text-grey py-2`} href={'/'} onClick={toggleMenuButton}> Home </Link>
-					<Link className={`px-3 text-center text-grey py-2`} href={'/blogs'} onClick={toggleMenuButton}> Blogs </Link>
-					<Link className={`px-3 text-center text-grey py-2`} href={'/contact'} onClick={toggleMenuButton}> Contact </Link>
-					<Link className={`px-3 text-center text-grey py-2`} href={'https://youtube.com/@howdevyou'} target="_blank" onClick={toggleMenuButton}> Youtube </Link>
-				</div>
+				<div className="fixed hidden max-md:flex inset-0 bg-white z-50 flex-col items-center overflow-y-hidden">
+						<div className={`cursor-pointer top-3 py-2 w-full text-right px-4`} onClick={toggleMenuButton}>x <b>close</b></div>
+						<ul className="w-[100%] border-solid border-[0.1rem] border-t-0 border-b-0">
+  <li className="border-t border-b-0 border-[0.1rem] py-1 flex leading-1">
+    <Link className="px-3 w-full text-left text-grey py-2" href="/" onClick={toggleMenuButton}> 
+      Home 
+    </Link>
+  </li>
+  <li className="border-t border-b-0 border-[0.1rem] flex leading-1">
+    <Link className="px-3 w-full text-left text-grey py-2" href="/explora" onClick={toggleMenuButton}> 
+      Explorations 
+    </Link>
+  </li>
+  <li className="border-t border-b-0 border-[0.1rem] flex leading-1">
+    <Link className="px-3 w-full text-left text-grey py-2" href="/blogs" onClick={toggleMenuButton}> 
+      Blogs 
+    </Link>
+  </li>
+  <li className="border-t border-b-0 border-[0.1rem] flex leading-1">
+    <Link className="px-3 w-full text-left text-grey py-2" href="/contact" onClick={toggleMenuButton}> 
+      Contact 
+    </Link>
+  </li>
+  <li className="border-t border-b border-[0.1rem] flex leading-1">
+    <Link className="px-3 w-full text-left text-grey py-2" href="https://youtube.com/@howdevyou" target="_blank" onClick={toggleMenuButton}> 
+      Youtube 
+    </Link>
+  </li>
+</ul>
+
+					</div>
             )}
 		</header>
 	);

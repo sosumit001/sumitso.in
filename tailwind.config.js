@@ -28,7 +28,7 @@ module.exports = {
         base: '1rem',
         xl: '1.25rem',
         '2xl': '1.563rem',
-        '3xl': 'var(--font-size-3xl)',
+        '3xl': '2.145rem',
         '4xl': '2.441rem',
         '5xl': '3.052rem',
       },

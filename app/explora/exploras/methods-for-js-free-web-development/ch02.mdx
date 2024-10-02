@@ -1,0 +1,78 @@
+---
+title: "JIT Compiler Bugs in Modern Browsers"
+summary: "This chapter discusses common issues and security risks introduced by bugs in JavaScript JIT compilers."
+---
+
+Just-In-Time (JIT) compilation is a powerful optimization technique used in modern JavaScript engines to speed up the execution of frequently run code. JIT compilers, like those found in **V8**, **SpiderMonkey**, **JavaScriptCore**, and **ChakraCore**, play a significant role in improving JavaScript performance by translating bytecode into native machine code on-the-fly.
+
+However, despite its performance benefits, JIT compilation introduces several challenges and bugs that can impact both browser performance and security. This chapter will explore the common types of JIT compiler bugs and their implications.
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+![Javascript Execution in web](/explora/js-free-web/ch01/ch01-jit-c.png)
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+In a typical JavaScript execution pipeline, the engine begins by parsing the source code into an Abstract Syntax Tree (AST) and converting it into bytecode, which the interpreter can execute. As the code runs, the interpreter identifies "hot" code paths, which are executed frequently. The JIT compiler then optimizes these hot code paths by compiling them into assembly language for faster execution.
+
+<p>&nbsp;</p>
+
+#### Common JIT Compiler Bugs and Issues
+
+<p>&nbsp;</p>
+
+While JIT compilers significantly improve performance, they also introduce several vulnerabilities due to the complexity of their optimizations. The following are common issues found in JIT compilers:
+
+<p>&nbsp;</p>
+
+- **Miscompilation**: The JIT compiler might incorrectly optimize certain code paths, resulting in unexpected behavior. For instance, incorrect assumptions about variable types or control flow may lead to the removal of essential checks.
+
+<p>&nbsp;</p>
+
+- **Bounds-Check Elimination**: In some cases, the JIT compiler may incorrectly eliminate bounds checks when it mistakenly assumes that array accesses are safe. This can lead to out-of-bounds memory access, causing security risks like buffer overflows.
+  
+<p>&nbsp;</p>
+
+- **Redundancy Elimination**: JIT compilers often eliminate redundant type checks to optimize performance. However, incorrectly removing these checks can lead to type confusion, where a variable is assumed to be one type but is actually another during execution.
+
+<p>&nbsp;</p>
+
+- **Security Vulnerabilities**: Many JIT compiler bugs do not cause immediate crashes but silently expose security risks. These vulnerabilities can be exploited to execute arbitrary code, as seen in real-world exploits of **V8** and **JavaScriptCore**.
+
+<p>&nbsp;</p>
+
+#### Real-World Examples of JIT Bugs
+
+<p>&nbsp;</p>
+
+Several security competitions and bug bounty programs, like **Pwn2Own** and the **Tianfu Cup**, have demonstrated how JIT compiler bugs can be used to exploit browsers. Some notable examples include:
+
+<p>&nbsp;</p>
+
+- **String.lastIndexOf Off-By-One Bug** : This bug, found in **V8**, resulted from a miscalculation during range analysis. The JIT compiler incorrectly assumed the range of an index, leading to an out-of-bounds access without triggering a crash.
+
+<p>&nbsp;</p>
+
+- **Bounds Check Bypass in JavaScriptCore** : An exploit found in **JavaScriptCore** involved the elimination of bounds checks during array accesses, allowing attackers to read or write memory beyond the allocated space.
+
+<p>&nbsp;</p>
+
+#### Tools for Identifying JIT Bugs
+
+<p>&nbsp;</p>
+
+Given the complexity of JIT compilation, traditional fuzzing techniques may not be sufficient to detect non-crashing bugs. Advanced tools like **FuzzJIT** have been developed to specifically target JIT compiler bugs. These tools generate JavaScript test cases that trigger JIT compilation and then check for execution inconsistencies between interpreted and compiled code.
+
+<p>&nbsp;</p>
+
+- **FuzzJIT**: This tool leverages an oracle-enhanced fuzzing approach to expose JIT compiler bugs by ensuring that code produces identical results before and after JIT compilation. By focusing on common bug-prone areas such as bounds-check elimination and speculative optimization, FuzzJIT has uncovered numerous security vulnerabilities across major JavaScript engines.
+
+<p>&nbsp;</p>
+
+#### Conclusion
+
+<p>&nbsp;</p>
+
+As we've seen, the complexities of JIT compilation introduce performance and security risks. In the upcoming chapters, we’ll explore ways to reduce reliance on JavaScript across different areas. Next, in Client Side Alternatives, we’ll look at tools like HTMX and WebAssembly, which offer methods to create dynamic, efficient applications with less JavaScript. After that, in Server Side Alternatives, we’ll consider backend technologies such as Go, Python, and PHP, which provide more secure and scalable solutions for server-side rendering and logic.
