@@ -15,7 +15,7 @@ const Page = () => {
     <>
       <div className="flex">
         {/* Main Content */}
-        <div className="flex-grow p-4">
+        <div className="flex-grow">
           <Article heroHeaderText="Explora" postText="">
             <div className={`${canela_th.className} px-4 md:px-8 lg:px-12`}>
               <header>
@@ -28,11 +28,11 @@ const Page = () => {
               </header>
 
               <section>
-                <ul className="flex justify-start px-0 flex-wrap">
+                <ul className="flex justify-center px-0 flex-wrap">
                   {explorations.map((exploration) => (
                     <li
                       key={exploration.exploration}
-                      className="p-4 flex text-grey flex-col border border-titledCream hover:shadowMd gap-2 hover:bg-white hover:scale-105 hover:text-tealBright transition duration-200 rounded-[4px] w-[350px] max-w-[100%]"
+                      className="p-4 flex text-grey flex-col border border-titledCream hover:shadowMd gap-2 hover:bg-white hover:scale-105 hover:text-tealBright transition duration-200 rounded-[4px] w-full max-w-[100%]"
                     >
                       <Link href={`/explora/${exploration.exploration}`}>
                         <div>
