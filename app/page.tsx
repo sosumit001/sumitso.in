@@ -15,7 +15,6 @@ const Page = () => {
   return (
     <>
       <Article heroHeaderText={`Sumit shares thoughts, ideas, and reflections on technology.`}>
-        <div className={`${canela_th.className} px-4 md:px-8 lg:px-12`}>
           <p className="text-lg md:text-xl leading-relaxed">
             Hello and welcome! This is Sumit So, I'm glad you're here. This site is my little corner of the internet where I share my journey as a 
             <a className="underline hover:text-tealBright" target="_blank" href="https://youtube.com/@howdevyou">YouTuber</a> and blogger.
@@ -24,7 +23,7 @@ const Page = () => {
             I don't know a lot of people, but I think this is a good start to make videos and post articles. Feel free to connect with me if you think I can help in some way or if you'd like to collaborate. I’m excited about the possibilities of what we can create together.
           </p>
 
-          <h2 className={`${canela_th.className} mt-8 text-2xl md:text-3xl font-semibold`}>About Me</h2>
+          <h2 className={`${canela_th.className} mt-0 mb-0 text-2xl md:text-3xl font-semibold`}>About Me</h2>
           <div className="text-left flex flex-col md:flex-row items-start justify-start gap-4 mt-4">
             <p className="text-lg md:text-xl leading-relaxed">
               About me? Well, it's April 19th, 2024, and I’m 23 years old. I’ve just completed my engineering degree—four years of intense college life. Currently, I’m interning as a Full Stack Developer at a startup. While it may seem like a basic role, I’m learning and growing through the experience.
@@ -51,14 +50,13 @@ const Page = () => {
           </div>
 
           <div className="mt-8">
-            <h2 className={`${canela_th.className} text-2xl md:text-3xl font-semibold`}>Future Plans</h2>
-            <div className="mt-4 rounded-lg p-4">
+            <h2 className={`${canela_th.className} text-2xl mt-0 mb-0 md:text-3xl font-semibold`}>Future Plans</h2>
+            <div className="mt-4 rounded-lg">
               <p className="text-lg md:text-xl leading-relaxed">
                 Well, I’ve got a lot of things on the fire right now, like revamping this website! It’s a work in progress, but I’m excited to make it a place where all my crazy ideas and late-night thoughts find a home. Maybe I'll start my weekly newsletter—who knows?
               </p>
             </div>
           </div>
-        </div>
       </Article>
     </>
   );

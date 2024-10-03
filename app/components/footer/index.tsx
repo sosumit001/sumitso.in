@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className={` ${canela_th.className} text-black flex justify-between max-w-5xl mx-auto items-center max-md:h-20 h-32 max-md:px-8 px-6`}>
+    <div className={` ${canela_th.className} w-full text-black flex justify-between mx-auto items-center max-md:h-20 h-32`}>
       {/* left */}
       <div className={'flex gap-2'}>
         <span>©</span>

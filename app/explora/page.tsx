@@ -17,7 +17,6 @@ const Page = () => {
         {/* Main Content */}
         <div className="flex-grow">
           <Article heroHeaderText="Explora" postText="">
-            <div className={`${canela_th.className} px-4 md:px-8 lg:px-12`}>
               <header>
                 <p className={`${canela_sub.className} text-4xl leading-[1] mt-8 text-grey`}>
                   Honest takes on tech I’m still figuring out, one step at a time.
@@ -49,7 +48,6 @@ const Page = () => {
                   ))}
                 </ul>
               </section>
-            </div>
           </Article>
         </div>
       </div>
