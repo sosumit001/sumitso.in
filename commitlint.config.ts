@@ -17,6 +17,7 @@ const Configuration: UserConfig = {
 				'revert',   // Revert to previous commit
 				'style',    // Code style changes
 				'test',     // Adding or updating tests
+				'explora'	// New Exploration
 			],
 		],
 	}
