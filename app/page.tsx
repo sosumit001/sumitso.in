@@ -20,7 +20,7 @@ const Page = () => {
         </h4>
         <h2>Sumit So</h2>
         <p className="text-lg md:text-xl leading-relaxed">
-          I’m a technical content writer at{" "}
+          I’m a developer advocate at{" "}
           {<SomeT href="https://www.videosdk.live/" text="videoSDK.live" />}, a
           platform that makes it easy for developers to integrate real-time
           video, audio, and interactive features into their apps.
