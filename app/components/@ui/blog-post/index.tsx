@@ -1,48 +1,58 @@
-import Link from "next/link";
-import Image from "next/image";
-import { formatDate } from "@/lib/utils";
-import { canela_th, canela_regu } from "@/lib/fonts";
+"use client";
 
-interface TBlogPost {
+import { canela_regu, canela_th } from "@/lib/fonts";
+import { formatDate } from "@/lib/utils";
+
+interface BlogPostProps {
   slug: string;
   title: string;
-  publishedAt?: string;
-  summary?: string;
+  publishedAt: string;
+  summary: string;
 }
 
-const BlogPost = ({ slug, title, publishedAt, summary }: TBlogPost) => {
+const BlogPost = ({ slug, title, publishedAt, summary }: BlogPostProps) => {
   return (
-    <Link
-      className={`${canela_th.className} flex gap-4 px-5 py-4 text-grey hover:text-tealBright lg:py-6 flex-wrap sm:px-6 md:px-8 lg:px-10 hover:scale-105 hover:shadow-shadowSm border-titledCream border-[1px] duration-300 transition ease-in-out bg-white rounded-md`}
-      href={`/blogs/${slug}`}
+    <div
+      className={`${canela_th.className} group cursor-pointer relative bg-white rounded-xl shadow-shadowSm hover:shadow-shadowLg transition-all duration-300 overflow-hidden border border-gray-100`}
+      onClick={() => (window.location.href = `/blogs/${slug}`)}
     >
-      <div className="w-full flex items-center flex-wrap my-2 relative">
-        <div className="tracking-tight w-full">
-          <div className="flex items-center px-4 justify-between max-sm:flex-wrap max-md:py-4 max-sm:py-4">
-            <div className="flex gap-4 flex-col max-sm:gap-2 max-sm:max-w-[100%] w-full max-w-[70%]">
-              <div className={`${canela_regu.className} text-black tracking-tight text-xl font-semibold`}>
-                {title}
-              </div>
-              <div className="text-sm text-grey">
-                {formatDate(publishedAt)}
-              </div>
-              <div className="text-left mt-3 pr-16 max-sm:pr-0">
-                {summary}
-              </div>
-            </div>
-
-            <Image
-              src={`/blogs/thumbnails/${slug}.png`}
-              alt={title}
-              height={80}
-              width={290}
-              priority
-              className="rounded-md shadow-md max-sm:w-[100%] w-[30%]"
-            />
-          </div>
+      <div className="aspect-w-16 aspect-h-9 bg-gray-100">
+        <img
+          src={`/blogs/thumbnails/${slug}.png`}
+          alt={title}
+          className="object-cover w-full h-48 group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+      <div className="p-6">
+        <h3
+          className={`${canela_regu.className} text-xl font-semibold text-gray-700 mb-2 group-hover:text-tealBright transition-colors duration-200`}
+        >
+          {title}
+        </h3>
+        <div className="flex items-center mb-2">
+          <time className="text-sm mx-auto text-gray-500">
+            {formatDate(publishedAt)}
+          </time>
+        </div>
+        <p className="text-gray-600 line-clamp-2">{summary}</p>
+        <div className="mt-4">
+          <span className="inline-flex items-center text-sm font-medium text-tealBright group-hover:text-tealBright">
+            Read article
+            <svg
+              className="ml-2 w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </span>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

@@ -1,12 +1,16 @@
 ---
-title: "Compile C/C++ to WebAssembly: Ultimate 2024 Guide with Emscripten and LLVM"
-publishedAt: '2024-06-19'
+title: "Compile C/C++ to WebAssembly"
+publishedAt: "2024-06-19"
 image: "/public/sumo-home.png"
 summary: "Learn how to compile C/C++ code into WebAssembly with our comprehensive guide. Discover tools like Emscripten and LLVM for faster web applications."
 ---
 
-<YouTube id = "L4Gqfte89gc" />
-WebAssembly (WASM) has emerged as a powerful tool that extends the capabilities of web browsers beyond what JavaScript can offer. It enables the execution of code written in low-level languages such as C, C++, and Rust, directly in the browser, bringing performance close to native speed. This blog post explores compiling low-level languages into WebAssembly, focusing on tools such as Emscripten and LLVM.
+<YouTube id="L4Gqfte89gc" />
+WebAssembly (WASM) has emerged as a powerful tool that extends the capabilities of
+web browsers beyond what JavaScript can offer. It enables the execution of code written
+in low-level languages such as C, C++, and Rust, directly in the browser, bringing
+performance close to native speed. This blog post explores compiling low-level languages
+into WebAssembly, focusing on tools such as Emscripten and LLVM.
 
 WebAssembly's purpose lies in its name: it provides a binary instruction format for a stack-based virtual machine, which can run in web browsers. Combining low-level languages with WebAssembly allows developers to create more performant web applications, use existing libraries, and port legacy codebases to the web.
 
@@ -86,13 +90,11 @@ After generating the WebAssembly file, the next step is to instantiate it using 
 Create a new JavaScript file, `index.js`:
 
 ```javascript
-fetch('hello_world.wasm')
-  .then(response => response.arrayBuffer())
-  .then(bytes => WebAssembly.instantiate(bytes, {}))
-  .then(results => {
-    document.body.appendChild(
-      document.createTextNode('WebAssembly Loaded')
-    );
+fetch("hello_world.wasm")
+  .then((response) => response.arrayBuffer())
+  .then((bytes) => WebAssembly.instantiate(bytes, {}))
+  .then((results) => {
+    document.body.appendChild(document.createTextNode("WebAssembly Loaded"));
   });
 ```
 
@@ -106,10 +108,10 @@ The `WebAssembly.instantiate` function creates an instance of the module. The im
 const memory = new WebAssembly.Memory({ initial: 1, maximum: 2 });
 const importObject = { env: { memory } };
 
-fetch('hello_world.wasm')
-  .then(response => response.arrayBuffer())
-  .then(bytes => WebAssembly.instantiate(bytes, importObject))
-  .then(results => {
+fetch("hello_world.wasm")
+  .then((response) => response.arrayBuffer())
+  .then((bytes) => WebAssembly.instantiate(bytes, importObject))
+  .then((results) => {
     const { instance } = results;
     instance.exports._start();
   });
@@ -120,12 +122,12 @@ fetch('hello_world.wasm')
 Using the instantiated WebAssembly module, you can call exported functions from JavaScript.
 
 ```javascript
-fetch('add.wasm')
-  .then(response => response.arrayBuffer())
-  .then(bytes => WebAssembly.instantiate(bytes, {}))
-  .then(results => {
+fetch("add.wasm")
+  .then((response) => response.arrayBuffer())
+  .then((bytes) => WebAssembly.instantiate(bytes, {}))
+  .then((results) => {
     const add = results.instance.exports.add;
-    console.log('2 + 3 =', add(2, 3));
+    console.log("2 + 3 =", add(2, 3));
   });
 ```
 
@@ -162,16 +164,16 @@ Tables store functions and allow their retrieval by index. You can import functi
 ```javascript
 const importObject = {
   env: {
-    imported_func: function(arg) {
+    imported_func: function (arg) {
       console.log(arg);
-    }
-  }
+    },
+  },
 };
 
-fetch('example.wasm')
-  .then(response => response.arrayBuffer())
-  .then(bytes => WebAssembly.instantiate(bytes, importObject))
-  .then(results => {
+fetch("example.wasm")
+  .then((response) => response.arrayBuffer())
+  .then((bytes) => WebAssembly.instantiate(bytes, importObject))
+  .then((results) => {
     results.instance.exports.call_imported_func();
   });
 ```
