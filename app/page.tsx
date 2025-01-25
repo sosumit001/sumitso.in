@@ -5,7 +5,6 @@ import Article from "./components/article";
 import { LatestBlogPost } from "./components/post";
 import Link from "next/link";
 import SomeT from "./components/@ui/some-text";
-import SlidingLink from "./components/@ui/sliding-link";
 
 export const metadata: Metadata = {
   title: "Sumit So.",
