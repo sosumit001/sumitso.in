@@ -13,7 +13,8 @@ interface BlogPostProps {
 const BlogPost = ({ slug, title, publishedAt, summary }: BlogPostProps) => {
   return (
     <div
-      className={`${canela_th.className} group cursor-pointer relative bg-white rounded-xl shadow-shadowSm hover:shadow-shadowLg transition-all duration-300 overflow-hidden border border-gray-100`}
+      className={`${canela_th.className} border-titledCream group cursor-pointer relative bg-white rounded-xl shadow-shadowSm hover:shadow-shadowLg transition-all duration-300 overflow-hidden border border-gray-100`}
+
       onClick={() => (window.location.href = `/blogs/${slug}`)}
     >
       <div className="aspect-w-16 aspect-h-9 bg-gray-100">
