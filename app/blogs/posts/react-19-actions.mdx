@@ -1,20 +1,19 @@
 ---
 title: "React 19: Smarter State Management with useTransition, useAction, and useFormStatus"
-publishedAt: '2024-05-05'
+publishedAt: "2024-05-05"
 image: "/public/sumo-home.png"
 summary: "Explore the new state management features in React 19, making React development smoother and more efficient."
 ---
 
-![React Image](/blogs/thumbnails/react-19-actions.png)
-
 ## Introduction
+
 Hey there!
 
-This is Sumit So, Welcome to my space on the internet * _ *
+This is Sumit So, Welcome to my space on the internet _ \_ _
 
 If you are a React Developer or use React in some form, then things are about to get easier for you
-because ***React 19*** is on its way, coming with some magical solutions for problems that were previously solved by
-depending on third-party solutions, like server-side rendering, or remembering previous states, managing multiple states like ***errors***, or ***pending states***
+because **_React 19_** is on its way, coming with some magical solutions for problems that were previously solved by
+depending on third-party solutions, like server-side rendering, or remembering previous states, managing multiple states like **_errors_**, or **_pending states_**
 during an API call. But now, React has finally answered all these crucial questions.
 
 And in this blog, we will talk about some really cool features.
@@ -35,34 +34,36 @@ React 19 introduces new hooks and features that simplify state management during
 // don't need this part anymore
 const [isPending, setIsPending] = useState<>(...)
 ```
+
 The `useTransition` hook informs you about the status of the pending state during an API call. For example,
 checkout complete code : [`/src/App.tsx`](https://github.com/sosumit001/react-19-beginners-guide/blob/react-19-useFormStatus/src/App.tsx)
+
 ```tsx
-const [isPending, startTransition] = useTransition()
-	const handleAddUser = () => {
-		startTransition(async  () => {
-			if (!username) {
-				alert("Username cannot be empty");
-				return;
-			}
-			await fetch('http://localhost:3001/users', {
-				method: "POST",
-				body: JSON.stringify({name: username})
-			})
-		})
-	}
-		return (
-		<div>
-			<div>
-				...
-				<button type="submit" onClick={handleAddUser} disabled={isPending}>Add User</button>
-				...
-			</div>
-		</div>
-	);
+const [isPending, startTransition] = useTransition();
+const handleAddUser = () => {
+  startTransition(async () => {
+    if (!username) {
+      alert("Username cannot be empty");
+      return;
+    }
+    await fetch("http://localhost:3001/users", {
+      method: "POST",
+      body: JSON.stringify({ name: username }),
+    });
+  });
+};
+return (
+  <div>
+    <div>
+      ...
+      <button type="submit" onClick={handleAddUser} disabled={isPending}>
+        Add User
+      </button>
+      ...
+    </div>
+  </div>
+);
 ```
-
-
 
 ## useActionState hook
 
@@ -70,25 +71,25 @@ const [isPending, startTransition] = useTransition()
 
 ```tsx
 const [_error, submitAddUser, isPending] = useActionState(
-	async (_prevState: any, form: FormData) => {
-		if (!username) {
-			alert("Username cannot be empty");
-			return;
-		}
-		const res = await fetch('http://localhost:3001/users', {
-			method: "POST",
-			body: JSON.stringify({name: form.get("name")})
-		});
-		if(res.ok) {
-			setUsername("")
-		}
-	},
-	null
+  async (_prevState: any, form: FormData) => {
+    if (!username) {
+      alert("Username cannot be empty");
+      return;
+    }
+    const res = await fetch("http://localhost:3001/users", {
+      method: "POST",
+      body: JSON.stringify({ name: form.get("name") }),
+    });
+    if (res.ok) {
+      setUsername("");
+    }
+  },
+  null
 );
 ```
 
-
 ## useFormStatus
+
 `useFormStatus` is a valuable addition to React, as it enables any child component within a form to access the form's submission status, regardless of their location in the application. This feature is particularly useful for managing UI elements like buttons based on the form's state, enhancing user experience by preventing multiple submissions.
 
 For instance, below is the `Button` component which utilizes `useFormStatus`. This component lives in the folder [`/components/@ui/button`](https://github.com/sosumit001/react-19-beginners-guide/tree/react-19-useFormStatus/src/components/%40ui):

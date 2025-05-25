@@ -5,8 +5,6 @@ image: "/public/sumo-home.png"
 summary: "JavaScript is unpredictable, old, and sometimes makes me vomit. I don't want to use it anymore. Now, this line is perfect for grabbing your attention"
 ---
 
-![Javascript free web](/blogs/thumbnails/javascript-free-web.png)
-
 JavaScript is unpredictable, old, and sometimes makes me vomit. I don't want to use it anymore. Now, this line is perfect for grabbing your attention, but at the same time, it's false because developers can't live without JavaScript, particularly front-end devs.
 This exploration is about finding ways to avoid JavaScript. When I say "avoid JavaScript," I'm not suggesting using something that is transpiled into JavaScript. What I actually mean is that I just want very minimal JavaScript in the final output of my application code.
 
@@ -22,7 +20,7 @@ Take popular frameworks like **React**, **Vue**, **Angular**, and **Svelte**. Th
 
 With extensive use comes several critical pain points, including:
 
-1. **Slower Load Time** – Large JavaScript bundles slow down page performance. Every library you add increases the weight of your project, making load times sluggish. 
+1. **Slower Load Time** – Large JavaScript bundles slow down page performance. Every library you add increases the weight of your project, making load times sluggish.
 2. **Client-Side Rendering Issues** – Many frameworks unnecessarily rely on client rendering, which can cause delays and performance hiccups. React apps, for instance, re-render the entire webpage using a virtual DOM, adding more time before a webpage becomes interactive.
 3. **Heavy Dependencies** – The more libraries you add, the more you'll encounter problems with compatibility, version updates, and dependency conflicts.
 4. **Hidden Maintenance Costs** – Keeping up with the constant updates and potential breaking changes from over-reliance on packages becomes a costly affair in terms of time and resources.
@@ -31,10 +29,7 @@ With extensive use comes several critical pain points, including:
 
 One of the key areas where JavaScript tries to improve performance is through **JIT (Just-In-Time) compilation**. Modern browsers, like Chrome’s V8 engine, compile JavaScript into machine code at runtime.
 
-
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/iatxszoy5f0au6d819rt.png)
-
-
 
 The goal is to make JavaScript as fast as possible.
 
@@ -47,7 +42,7 @@ Here are some of the more notorious bugs:
 - **Miscompilation**: The JIT compiler can produce incorrect output if it misoptimizes code sections.
 - **Bounds Check Elimination**: In an attempt to optimize, the JIT compiler might skip necessary checks like array bounds, opening the door to crashes.
 - **Redundancy Elimination**: When the JIT compiler assumes repeated code is redundant, it might eliminate important sections, causing unpredictable behavior.
-  
+
 These compiler issues underline the importance of testing JavaScript extensively to avoid unexpected problems. But more importantly, they show why we need to **reduce JavaScript whenever possible** to lower the risk of new issues cropping up.
 
 ## Client-Side Alternatives to JavaScript
@@ -56,11 +51,12 @@ The good news is that you don’t have to be stuck in the JavaScript loop. Sever
 
 ### HTMX: Hypermedia on Steroids
 
-HTMX allows developers to build dynamic, interactive web applications with minimal JavaScript. Instead of relying on JavaScript for every interaction, HTMX sends *actual HTML* from the server, reducing the need to re-render the entire UI with JavaScript frameworks like React.
+HTMX allows developers to build dynamic, interactive web applications with minimal JavaScript. Instead of relying on JavaScript for every interaction, HTMX sends _actual HTML_ from the server, reducing the need to re-render the entire UI with JavaScript frameworks like React.
 
 Imagine this: Instead of sending a JSON response back for your frontend to process, HTMX enables you to send HTML straight from the backend, reducing client-side churn. HTMX leans on **traditional HTML anchors and forms** to make calls directly to the server—all without JavaScript.
 
 #### Why HTMX Rocks:
+
 - **Minimal learning curve** – Add a few attributes to your HTML, and you're up and running.
 - **Works with HTML** – Avoid manipulating the DOM using excessive JavaScript.
 - **Graceful fallback** – Even if someone disables JavaScript in their browser, your HTMX-powered app will still function, albeit without some of the bells and whistles.
@@ -74,6 +70,7 @@ When it comes to **WebAssembly** (Wasm), the intent isn’t to replace JavaScrip
 With WebAssembly, you can **compile languages like C, C++, and Rust to perform specific, computation-heavy tasks on the client-side without using JavaScript**. This makes WebAssembly ideal for tasks like video editing, gaming, or data processing, all within a web browser.
 
 #### WebAssembly’s Major Benefits:
+
 - **Highly performant**: Optimized for CPU-heavy tasks that JavaScript struggles with.
 - **Runs directly in the browser**: Like JavaScript, it benefits from browser support but doesn’t require JavaScript parsing/rendering inefficiency.
 - **Portable**: Same code can be compiled and run across browsers with superb efficiency.
@@ -86,21 +83,25 @@ While JavaScript was once confined to the client side, the introduction of **Nod
 
 Luckily, we’ve got **100% alternatives to JavaScript on the server side**. Here are a few:
 
-### 1. **Go (Golang)** 
+### 1. **Go (Golang)**
+
 Go’s lightweight goroutines allow for **highly concurrent, scalable systems** without the memory overhead of threads. This language is especially suited for applications that need blazing-fast performance with large-scale traffic.
 
 ### 2. **Django (Python)**
+
 Django is a favorite when it comes to **security**. It reduces vulnerabilities like **prototype pollution** and **Redos Attacks** (which JavaScript is prone to). While it might not scale like Go, **Django is perfect for smaller or security-conscious applications**.
 
 ### 3. **PHP (Laravel)**
+
 PHP has always been a reliable backend language, and its modern framework, Laravel, makes **small to medium projects** easy to manage. With automatic routing and a great ecosystem of plugins, PHP still has its place in the development world, despite JavaScript's rise.
 
 ### 4. **Ruby on Rails**
+
 For **rapid development**, **Ruby on Rails** offers an elegant, developer-friendly environment. While it might not be the best at handling large-scale applications, it's perfect for small teams aiming for quick, scalable solutions.
 
 ## The Hidden Costs of JavaScript Frameworks
 
-Using *more* JavaScript, especially for everything on both the client and server sides, incurs a number of hidden costs. The larger your JavaScript bundle, the more problems you'll face. Here's what you're up against:
+Using _more_ JavaScript, especially for everything on both the client and server sides, incurs a number of hidden costs. The larger your JavaScript bundle, the more problems you'll face. Here's what you're up against:
 
 - **Package Bloat** – The more libraries and dependencies you add, the more your final output bloats with unnecessary code.
 - **Increased Maintenance** – Keeping those dependencies up to date creates maintenance overhead and risks breaking your app when libraries undergo major updates.
@@ -114,7 +115,7 @@ While cutting out JavaScript completely might not be feasible for everyone, **re
 
 ## Conclusion
 
-Whether you aim to minimize JavaScript on the client or the server, you have the power to make your web applications leaner, faster, and more secure. **HTMX and WebAssembly** offer exciting alternatives for JavaScript-heavy frontend development, while **Go, Django, and Laravel** are viable options for the backend. 
+Whether you aim to minimize JavaScript on the client or the server, you have the power to make your web applications leaner, faster, and more secure. **HTMX and WebAssembly** offer exciting alternatives for JavaScript-heavy frontend development, while **Go, Django, and Laravel** are viable options for the backend.
 
 JavaScript is here to stay, but we don’t need to rely on it for everything. By strategically reducing JavaScript’s footprint, we can finally build apps that perform better and scale seamlessly.
 
