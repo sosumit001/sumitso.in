@@ -33,7 +33,7 @@ const Page = () => {
           </header>
 
           <section className="py-6">
-            <ul className="flex justify-center px-0 flex-wrap">
+            <ul className="flex justify-center px-0 flex-wrap gap-4">
               {explorations.map((exploration) => (
                 <li
                   key={exploration.exploration}

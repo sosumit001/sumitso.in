@@ -1,23 +1,23 @@
-import { notFound } from 'next/navigation'
-import { CustomMDX } from '@/components/mdx'
-import { getBlogPosts } from '@/blogs/utils'
-import { formatDate } from '@/lib/utils'
-import { baseUrl } from '@/sitemap'
-import Footer from '@/components/footer'
-import Link from 'next/link'
+import { notFound } from "next/navigation";
+import { CustomMDX } from "@/components/mdx";
+import { getBlogPosts } from "@/blogs/utils";
+import { formatDate } from "@/lib/utils";
+import { baseUrl } from "@/sitemap";
+import Footer from "@/components/footer";
+import Link from "next/link";
 
 export async function generateStaticParams() {
-  let posts = getBlogPosts()
+  let posts = getBlogPosts();
 
   return posts.map((post) => ({
     slug: post.slug,
-  }))
+  }));
 }
 
 export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+  let post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
-    return
+    return;
   }
 
   let {
@@ -25,8 +25,10 @@ export function generateMetadata({ params }) {
     publishedAt: publishedTime,
     summary: description,
     image,
-  } = post.metadata
-  let ogImage = image ? image : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+  } = post.metadata;
+  let ogImage = image
+    ? image
+    : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
@@ -34,7 +36,7 @@ export function generateMetadata({ params }) {
     openGraph: {
       title,
       description,
-      type: 'article',
+      type: "article",
       publishedTime,
       url: `${baseUrl}/blog/${post.slug}`,
       images: [
@@ -44,33 +46,33 @@ export function generateMetadata({ params }) {
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title,
       description,
       images: [ogImage],
     },
-  }
+  };
 }
 
 export default function Blog({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+  let post = getBlogPosts().find((post) => post.slug === params.slug);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   return (
-    <section className='mx-auto text-left py-6 px-6 sm:px-8 md:px-10 lg:px-12 lg:w-[70%] md:w-[80%] sm:w-[90%] w-[100%]'>
-      <div className='py-6 text-blue-500'>
-        <Link href={'/blogs'}>blogs</Link>
+    <section className="mx-auto text-left py-6 px-6 sm:px-8 md:px-10 lg:px-12 lg:w-[70%] md:w-[80%] sm:w-[90%] w-[100%]">
+      <div className="py-6 text-blue-500">
+        <Link href={"/blogs"}>blogs</Link>
       </div>
       <script
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
             headline: post.metadata.title,
             datePublished: post.metadata.publishedAt,
             dateModified: post.metadata.publishedAt,
@@ -80,8 +82,8 @@ export default function Blog({ params }) {
               : `/og?title=${encodeURIComponent(post.metadata.title)}`,
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
-              '@type': 'Person',
-              name: 'My Portfolio',
+              "@type": "Person",
+              name: "My Portfolio",
             },
           }),
         }}
@@ -94,10 +96,10 @@ export default function Blog({ params }) {
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
-      <article className="prose lg:text-xl text-[1.1rem] mx-auto max-w-none">
-        <CustomMDX source={post.content}/>
+      <article className="prose prose-lg prose-img:rounded-lg prose-headings:font-semibold prose-a:text-tealBright hover:prose-a:underline mx-auto max-w-none">
+        <CustomMDX source={post.content} />
       </article>
-				<Footer/>
+      <Footer />
     </section>
-  )
+  );
 }

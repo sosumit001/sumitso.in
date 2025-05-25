@@ -99,7 +99,9 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                   >
                     {exploration.metadata.title || "Overview Title"}
                   </h2>
-                  <article className={`${canela_th.className}`}>
+                  <article
+                    className={`${canela_th.className} prose prose-lg prose-img:rounded-lg prose-headings:font-semibold prose-a:text-tealBright hover:prose-a:underline`}
+                  >
                     <CustomMDX source={exploration.overviewContent} />
                   </article>
                 </>
@@ -110,7 +112,9 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                   >
                     {chapter.metadata.title || `Chapter ${chapter.slug}`}
                   </h2>
-                  <CustomMDX source={chapter.content} />
+                  <article className="prose prose-lg prose-img:rounded-lg prose-headings:font-semibold prose-a:text-tealBright hover:prose-a:underline">
+                    <CustomMDX source={chapter.content} />
+                  </article>
                 </>
               ) : (
                 <div>Chapter not found</div>

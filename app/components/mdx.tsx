@@ -23,7 +23,7 @@ const options = {
 function Para(props) {
   return (
     <p
-      className={`${canela_regu.className} text-grey text-xl leading-[38px]`}
+      className={`${canela_regu.className} text-grey text-lg sm:text-xl leading-relaxed my-4`}
       {...props}
     />
   );
@@ -42,7 +42,7 @@ function Table({ data }) {
   ));
 
   return (
-    <table>
+    <table className="min-w-full border-collapse my-6">
       <thead>
         <tr>{headers}</tr>
       </thead>
@@ -53,9 +53,9 @@ function Table({ data }) {
 
 function YouTube({ id }) {
   return (
-    <div>
+    <div className="my-8">
       <iframe
-        className="aspect-video w-full"
+        className="aspect-video w-full rounded-lg shadow-md"
         src={"https://www.youtube.com/embed/" + id}
         title="YouTube Video Player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -69,21 +69,40 @@ function CustomLink(props) {
 
   if (href.startsWith("/")) {
     return (
-      <Link href={href} {...props}>
+      <Link href={href} className="text-tealBright hover:underline" {...props}>
         {props.children}
       </Link>
     );
   }
 
   if (href.startsWith("#")) {
-    return <a {...props} />;
+    return <a className="text-tealBright hover:underline" {...props} />;
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-tealBright hover:underline"
+      {...props}
+    />
+  );
 }
 
 function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+  return (
+    <div className="my-8">
+      <Image
+        alt={props.alt}
+        className="rounded-lg mx-auto shadow-md"
+        {...props}
+      />
+    </div>
+  );
+}
+
+function StrongText(props) {
+  return <strong className="font-semibold text-black" {...props} />;
 }
 
 // function Code({ children, ...props }) {
@@ -109,15 +128,15 @@ function createHeading(level, font_fam) {
       `h${level}`,
       {
         id: slug,
-        className: `${font_fam} text-black ${
-          level === 3 ? "text-3xl" : "text-" + (6 - level) + "xl"
-        }`,
+        className: `${font_fam} text-black mt-8 mb-4 ${
+          level === 3 ? "text-2xl sm:text-3xl" : "text-" + (5 - level) + "xl"
+        } font-semibold`,
       },
       [
         React.createElement("a", {
           href: `#${slug}`,
           key: `link-${slug}`,
-          className: "anchor",
+          className: "anchor hover:text-tealBright",
         }),
       ],
       children
@@ -130,20 +149,46 @@ function createHeading(level, font_fam) {
 }
 
 function CustomUL(props) {
-  return <ul className="list-disc pl-6 mb-4 text-lg" {...props} />;
+  return <ul className="list-disc pl-6 my-4 space-y-2" {...props} />;
 }
 
 function CustomLI(props) {
   return (
     <li
-      className={`${canela_regu.className} leading-relaxed text-grey`}
+      className={`${canela_regu.className} leading-relaxed text-grey pl-2`}
       {...props}
     />
   );
 }
 
-function StrongText({ children }) {
-  return <strong className="font-semibold text-tealBright">{children}</strong>;
+function CustomOL(props) {
+  return <ol className="list-decimal pl-6 my-4 space-y-2" {...props} />;
+}
+
+function CustomBlockquote(props) {
+  return (
+    <blockquote
+      className="border-l-4 border-teal pl-4 italic my-6 text-grey"
+      {...props}
+    />
+  );
+}
+
+function CodeBlock(props) {
+  return (
+    <pre className="bg-[#1e293b] text-[#f8fafc] p-4 rounded-lg overflow-auto my-6 text-sm sm:text-base">
+      {props.children}
+    </pre>
+  );
+}
+
+function InlineCode(props) {
+  return (
+    <code
+      className="bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded text-sm font-mono"
+      {...props}
+    />
+  );
 }
 
 let components = {
@@ -158,7 +203,11 @@ let components = {
   Image: RoundedImage,
   a: CustomLink,
   ul: CustomUL,
+  ol: CustomOL,
   li: CustomLI,
+  blockquote: CustomBlockquote,
+  pre: CodeBlock,
+  code: InlineCode,
   Table,
   YouTube,
   SomeT,
