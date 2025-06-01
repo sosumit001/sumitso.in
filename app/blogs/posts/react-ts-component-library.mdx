@@ -1,0 +1,358 @@
+---
+title: "Hey, Let's Build and Ship a React Component Library to NPM!"
+publishedAt: "2025-06-01"
+image: "/public/sumo-home.png"
+summary: "Learn how to build, test, and publish your own React component library to NPM with TypeScript in this step-by-step tutorial. Master essential tools and best practices for creating shareable React TypeScript libraries."
+---
+
+You know that feeling when you create an amazing React component and think, "Man, I really want to use this in all my projects"? Or maybe you've built something so cool that you want to share it with other developers? Well, today we're going to tackle exactly that - building our own React component library with TypeScript and publishing it to **NPM (Node Package Manager)**.
+
+I like to think of NPM as this massive digital marketplace where developers share their code creations (**NPM packages**). It's like a huge toolshed where everyone contributes their best tools, and today we're adding ours to the collection!
+
+Before we dive into the code, I actually made a video walking through this entire process if you're more of a visual learner:
+
+[Watch the YouTube Video: How to write a React Component Library and Publish it on NPM](https://youtu.be/_nTPhVOyl3A?si=I4Q4Ufs_U5O5elhr)
+
+And if you want to see the finished product, all the code is available in this GitHub repository:
+[GitHub Repository: react-component-library](https://github.com/howdevyou/react-component-library/tree/master)
+
+Alright, let's get our hands dirty!
+
+## Getting to Know Our Tools
+
+Before we start coding, let me introduce you to the main players in this game:
+
+**NPM (Node Package Manager)** is our Swiss Army knife. It's not just where we'll publish our library - it's also the command-line tool that comes with Node.js. We'll use it to set up our project, install dependencies (which are **NPM packages** themselves), and eventually **publish** our creation.
+
+**NVM (Node Version Manager)** is like having multiple versions of your favorite tool in your toolbox. Different projects sometimes need different Node.js versions, and **NVM** lets you switch between them effortlessly. Don't worry too much about this for now - any recent Node version will work fine for what we're doing.
+
+**Semantic Versioning (SemVer)** might sound fancy, but it's just a smart way to number your releases using the format `Major.Minor.Patch` (like `1.0.0`). When you bump the first number, you're warning developers about breaking changes. The second number means you added new features without breaking existing ones. The third is for bug fixes. It's like a communication system between you and everyone using your code.
+
+## Setting Up Our Workspace
+
+Every good project starts with proper planning, and for **NPM packages**, that means getting our `package.json` file right.
+
+**Step 1: Initialize the Project**
+
+First, create a new directory for your library. I went with `react-component-library`, but feel free to get creative. Then navigate into it and run:
+
+```bash
+npm init
+```
+
+This starts an interactive setup where NPM asks you some questions. Here's what matters:
+
+- **package name**: If you want to publish under your NPM username (called an **npm scope**), use something like `@your-username/react-component-library`. Otherwise, just `react-component-library` works.
+- **version**: The default `1.0.0` is perfect for our first release.
+- **description**: Write something that explains what your library does.
+- **entry point**: We'll set this to `./dist/cjs/Button.js` later - this tells other projects where to find your main code.
+
+You can hit Enter for most other questions to accept the defaults.
+
+**Step 2: Installing Our Dependencies**
+
+Since we're building a **React** library with **TypeScript**, let's get those installed:
+
+```bash
+npm install typescript react @types/react --save-dev
+```
+
+You might wonder about that `--save-dev` flag. Think of it this way: there are tools you need in your workshop to build something, and there are parts that actually go into the final product. **Dev dependencies** are the workshop tools - you need them to build your library, but they don't get bundled with it when someone installs your package.
+
+Here's the breakdown:
+
+- **dependencies**: Packages your library needs to run in production
+- **devDependencies**: Tools for development and building (like TypeScript)
+- **peerDependencies**: Packages you expect the user's project to already have (like React)
+
+**Step 3: Configuring TypeScript**
+
+TypeScript needs to know how you want it to behave, so we need a `tsconfig.json` file. You can create one manually or run `npx tsc --init` to generate a starter file. Here's the configuration I use for component libraries:
+
+```json
+{
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.tsx"],
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "esnext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "outDir": "dist/esm",
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "isolatedModules": true,
+    "noEmitOnError": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": true
+  }
+}
+```
+
+These settings tell the **TypeScript Compiler (TSC)** exactly how to transform your TypeScript into JavaScript. The `include` and `exclude` options specify which files to process - we want everything in our **source folder (src)** except test files.
+
+## Building Our First Component
+
+Time for the fun part! Let's create a simple `Button` component to get started.
+
+Create a `src` folder, then a `components` subfolder inside it. Now create `Button.tsx`:
+
+```typescript
+// src/components/Button.tsx
+import React from "react";
+
+const Button = () => {
+  return <button>Click Me!</button>;
+};
+
+export default Button;
+```
+
+Simple, right? We now have our first **React component** ready to go!
+
+## Testing Our Component
+
+Good developers test their code, and we're going to be good developers! We'll use **Jest** (a popular testing framework) along with some helpful testing utilities.
+
+**Installing the Testing Stack**
+
+```bash
+npm install jest ts-jest ts-node jest-environment-jsdom @testing-library/react @jest/globals --save-dev
+```
+
+Here's what each of these does:
+
+- `jest`: The main testing framework
+- `ts-jest`: Helps Jest understand TypeScript
+- `ts-node`: Lets Jest run TypeScript files directly
+- `jest-environment-jsdom`: Creates a fake browser environment for testing
+- `@testing-library/react`: Provides tools for testing React components the way users actually interact with them
+- `@jest/globals`: Gives us access to Jest functions like `test` and `expect`
+
+**Configuring Jest**
+
+Create a `jest.config.ts` file in your project root:
+
+```typescript
+// jest.config.ts
+import type { Config } from "jest";
+
+const config: Config = {
+  testEnvironment: "jsdom",
+  transform: {
+    "^.+\\.tsx?$": "ts-jest",
+  },
+};
+
+export default config;
+```
+
+**Writing Our First Test**
+
+Create `Button.test.tsx` next to your `Button.tsx` file:
+
+```typescript
+// src/components/Button.test.tsx
+import React from "react";
+import { test } from "@jest/globals";
+import { render } from "@testing-library/react";
+import Button from "./Button";
+
+test("testing button component", () => {
+  render(<Button />);
+  // This basic test just makes sure our component renders without crashing
+});
+```
+
+Now add a test script to your `package.json`:
+
+```json
+"scripts": {
+  "test": "jest --config jest.config.ts"
+},
+```
+
+Run `npm test` and watch your first test pass!
+
+## Keeping Things Organized with Git Hooks
+
+As your library grows, consistent commit messages become really important. This is where **Conventional Commits** come in handy. They follow a simple pattern: `type(scope): description`.
+
+For example:
+
+- `feat: add awesome button` (new feature)
+- `fix: resolve button styling issue` (bug fix)
+- `docs: update README` (documentation)
+
+To enforce this automatically, we'll use **Commitlint** and **Husky**.
+
+**Installing Commit Tools**
+
+```bash
+npm install @commitlint/cli @commitlint/config-conventional husky --save-dev
+```
+
+**Setting Up Commitlint**
+
+Create `commitlint.config.ts`:
+
+```typescript
+// commitlint.config.ts
+import type { UserConfig } from "@commitlint/types";
+
+const Configuration: UserConfig = {
+  extends: ["@commitlint/config-conventional"],
+};
+
+module.exports = Configuration;
+```
+
+**Configuring Husky**
+
+Husky manages **Git hooks** - scripts that run automatically at certain points in your Git workflow.
+
+Initialize Husky:
+
+```bash
+npx husky-init
+npm install
+```
+
+This creates a `.husky` folder. Inside it, create a `commit-msg` file (no extension):
+
+```sh
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx --no-install commitlint --edit $1
+```
+
+Now when you try to commit with a message like "updated stuff", Commitlint will stop you and ask for a proper conventional commit message!
+
+## Building for Distribution
+
+Our TypeScript code is great for development, but the JavaScript world needs... well, JavaScript! We need a **build process** to compile our TypeScript.
+
+We'll create two versions of our code to play nicely with different environments:
+
+- **ECMAScript Modules (ESM)**: The modern standard using `import`/`export`
+- **CommonJS (CJS)**: The older Node.js standard using `require()` and `module.exports`
+
+First, install a cleanup utility:
+
+```bash
+npm install rimraf --save-dev
+```
+
+Then update your `package.json` scripts:
+
+```json
+"scripts": {
+  "clean": "rimraf dist",
+  "build:esm": "tsc",
+  "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+  "build": "npm run clean && npm run build:esm && npm run build:cjs",
+  "test": "jest --config jest.config.ts",
+  "prepare": "husky install"
+},
+```
+
+Also add these important fields to your `package.json`:
+
+```json
+"main": "./dist/cjs/Button.js",
+"module": "./dist/esm/Button.js",
+"types": "./dist/esm/Button.d.ts",
+"files": ["./dist"],
+```
+
+The `files` array is crucial - it ensures only your compiled code gets published, not your entire source folder!
+
+## Testing Locally with npm link
+
+Before publishing to the world, let's test our package locally. The `npm link` command is perfect for this.
+
+**In your library project:**
+
+```bash
+npm link
+```
+
+This creates a global shortcut to your library on your computer.
+
+**In a test project** (create a new React app for testing):
+
+```bash
+npm link react-component-library
+```
+
+(Use whatever name you gave your package)
+
+Now you can import and use your component just like any other NPM package! Any changes you make to your library will immediately show up in your test project.
+
+When you're done testing:
+
+- In the test project: `npm unlink react-component-library`
+- In your library project: `npm unlink`
+
+## Publishing to NPM
+
+The big moment! Time to share your creation with the world.
+
+**Step 1: Log in to NPM**
+
+If you don't have an NPM account, create one at npmjs.com. Then:
+
+```bash
+npm login
+```
+
+**Step 2: Do a Dry Run**
+
+This is super important - it shows you exactly what would be published without actually doing it:
+
+```bash
+npm publish --dry-run
+```
+
+Check the file list carefully. You should see mostly files from your `dist` folder plus your `package.json`.
+
+**Step 3: Check Name Availability**
+
+```bash
+npm search your-package-name
+```
+
+If you get "No matches found," you're good to go!
+
+**Step 4: Publish for Real**
+
+For scoped packages (with @username):
+
+```bash
+npm publish --access=public
+```
+
+For regular packages:
+
+```bash
+npm publish
+```
+
+Congratulations! Your **React component library** is now live on NPM!
+
+## Wrapping Up
+
+We've covered a lot of ground here - from understanding **NPM packages** and setting up **TypeScript** with **React**, to configuring **tsconfig.json**, implementing **testing with Jest** and **Testing Library React**, enforcing **Conventional Commits** with **Commitlint** and **Husky**, managing **Git Hooks**, handling the **build process** for both **ESM** and **CJS** modules, and finally **publishing our React component library** to NPM.
+
+We also learned about **NVM**, **semantic versioning**, different types of **dependencies**, and how to use **npm link** for **local package testing**. Building a **React TypeScript library** might seem overwhelming at first, but when you break it down step by step, it becomes totally manageable.
+
+The setup we've created here gives you a solid foundation for any component library you want to build. Now it's your turn to take these tools and create something amazing. The NPM community is waiting for your contribution!
+
+Happy coding, and welcome to the world of open source package publishing!
