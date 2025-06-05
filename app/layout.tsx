@@ -5,7 +5,8 @@ import { Inter } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Sumit So",
-  description: "This is home page",
+  description:
+    "I'm a developer advocate at videoSDK.live, a platform that makes it easy for developers to integrate real-time video, audio, and interactive features into their apps.I'm Sumit So, and I'm really happy you found your way here. This is where I share my journey as a Youtuber and blogger.",
 };
 
 const inter = Inter({
