@@ -1,0 +1,136 @@
+---
+title: "Your First WebAssembly Module"
+publishedAt: "2025-07-03"
+summary: "Build your first real WebAssembly module: compile C++ to wasm, avoid common pitfalls, and unlock blazing web app speed—step-by-step guide!"
+image: "/images/javascript-frameworks.png"
+---
+
+Wait. JavaScript’s flexible, but _isn’t there a way to supercharge the web_, to squeeze every drop of speed from your code? This is not just your headache—millions of developers wrestle with the paradox: browsers running rich, interactive apps, but buckling under compute-heavy workloads.
+
+Here’s what most tutorials won’t admit: bridging the gap between powerful native code (C/C++) and the web—via WebAssembly—_isn’t actually rocket science_. But the devil’s in the details:
+
+- How do you make a simple, exportable function, not just a toy console log?
+- What’s really going on under the hood when you “compile to WebAssembly”?
+- And what lands in that mysterious `.wasm` file—could it be a black box, or _your_ golden ticket to a faster, smarter web app?
+
+What if launching your first wasm module meant you could move brainy C++ routines directly into the browser—without pages of obscure voodoo or boilerplate? In the next few minutes, you’ll do just that.
+
+## The Real-World Stakes: Why WebAssembly _Now_?
+
+Before diving in, let’s lay out what’s at stake: imagine slashing computation time in half for image processing, simulations, or anything math-heavy—_without rewriting the universe in JavaScript_. That’s the promise of WebAssembly (a.k.a. wasm).
+
+But competitors’ guides get you stuck on “Hello World.” You deserve a wasm tutorial that actually bridges C++ to wasm in a meaningful, exportable way—so your first wasm project isn’t just academic, it’s usable and lightning-fast.
+
+Ready to move from wishful thinking to direct browser-executed C++? Let’s break this down step by step.
+
+## Step 1: Crafting Your First Exportable C++ Function
+
+What makes code “WebAssembly-ready”? It can’t rely on OS-level tricks. It needs to play nice with the browser sandbox. Most importantly—it must be **exportable**: called from JavaScript, integrated seamlessly.
+
+Let’s start lean. Here’s C++ to wasm at its simplest, doing real work:
+
+```cpp
+// square.cpp
+extern "C" int square(int x) {
+    return x * x;
+}
+```
+
+**But why `extern "C"`?**
+
+It’s the unsung hero here—it keeps function names un-mangled so wasm can export them cleanly. Without it, you’re left with cryptic function names no JavaScript code can touch.
+
+**Pro tip competitors miss:**
+
+Always start with your “interface” functions wrapped in `extern "C"`. It’s your WebAssembly passport.
+
+## Step 2: Compiling C++ to WebAssembly (Beyond the Obvious)
+
+Here’s where most wasm tutorials wave their hands and skip the gritty details. You need a _precise, repeatable_ path from C++ source to a .wasm file—no black magic.
+
+Enter **Emscripten**, your compiler bridge.
+
+1. **Install Emscripten**
+
+   If you haven’t already:
+
+   ```bash
+   # One-time install
+   git clone <https://github.com/emscripten-core/emsdk.git>
+   cd emsdk
+   ./emsdk install latest
+   ./emsdk activate latest
+   source ./emsdk_env.sh
+   ```
+
+2. **Compile the C++ to wasm**
+
+   Let’s generate a clean, importable `.wasm` module (and a “glue” JavaScript loader for later):
+
+   ```bash
+   emcc square.cpp -Os -s WASM=1 -s EXPORTED_FUNCTIONS='["_square"]' \\
+          -s EXPORTED_RUNTIME_METHODS='["cwrap"]' -o square.js
+   ```
+
+   **What’s going on here?**
+
+   - `Os` minimizes the output size.
+   - `s WASM=1` says “compile to wasm.”
+   - `s EXPORTED_FUNCTIONS` tells Emscripten to make `square()` callable from JavaScript.
+   - `s EXPORTED_RUNTIME_METHODS` exposes Emscripten helpers (like `cwrap` for clean function calls).
+   - `o square.js` outputs both `square.wasm` **and** a loader `square.js`.
+
+   _No obscure manual settings or “experimental” flags—the competing guides tend to gloss over these details._
+
+3. **The Output: What’s Inside the .wasm File?**
+
+   You now have:
+
+   - `square.wasm` – the bytecode module: fast, portable, and executable on all modern browsers.
+   - `square.js` – the friendly JavaScript harness to load and interact with `square.wasm`.
+
+   **Here’s the trick:**
+
+   The `.wasm` file isn’t just a binary artifact. Think of it as “native code for the web”—sandboxed, secure, and ready to be called—if you know the secret handshake. You now have that handshake.
+
+## Step 3: Beyond “Hello World”—Exporting for the Real Web
+
+Most beginner wasm tutorials stop here. But in reality, a **usable wasm module** means:
+
+- Exporting multiple functions? Simply add them to `EXPORTED_FUNCTIONS`.
+- Handling data types? Stick to simple integers or floats for your very first wasm project—complex types need a little more setup (think: shared memory, pointers).
+- Documenting what you export! Or risk confusion on the JavaScript side.
+
+Go back to your `square.cpp` file—try adding a few utility functions, export them the same way, and watch your `.wasm` module grow into something formidable.
+
+## Step 4: Common Pitfalls (and How to Outsmart Them)
+
+**Let’s get brutally honest:** No other wasm tutorial is warning you about these pitfalls:
+
+- _Name Mismatches_: If you skip `extern "C"`, your functions will not be accessible—they’ll be buried under mangled names.
+- _Data Type Snares_: WebAssembly loves `int` and `float`. Avoid C++ strings and complex classes (yet)—they _won’t shuttle cleanly_ into or out of wasm.
+- _Export List Omissions_: Miss a function in `EXPORTED_FUNCTIONS` and it vanishes, invisible to the web.
+
+_Checked everything? Your module is ready for web stardom._
+
+## Step 5: What’s Next? JavaScript Integration Awaits
+
+You’ve got a bona fide `.wasm` file. But let’s be real: by itself, it’s like a sports car with no ignition—gorgeous, but in need of a driver.
+
+**That’s where our journey continues:**
+
+Bridging the gap between your new C++ webassembly code and actual browser JavaScript is where the magic happens. Next, you’ll wire up your wasm module so JS can call your C++ logic _like native functions,_ instantly turbocharging your frontend.
+
+## Recap: From C++ Code to WebAssembly—And a Glimpse Ahead
+
+Let’s call it out:
+
+- You wrote an exportable C++ function, `square()`, fit for web prime-time.
+- You compiled it with Emscripten, generating a true `.wasm` file and a loader.
+- You learned exactly what makes a wasm module tick—and how to avoid pitfalls competitors ignore.
+
+Ready to see your module come alive inside a real browser UI? Next up: **JavaScript Integration That Supercharges Your Wasm Project.** You’ll see exactly how to load, call, and even benchmark your C++ functions from JavaScript—with practical, real-world examples.
+
+_Your first wasm project isn’t the finish line—it’s your springboard. Meet me on the next post, and let’s launch your WebAssembly module into the wild._
+
+**Stay tuned: How to Make Your C++ WebAssembly Module Dance with JavaScript!**
