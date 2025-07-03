@@ -10,7 +10,12 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-  const explorations = getExplorations();
+  const explorations = getExplorations().sort((a, b) => {
+    if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
+      return -1;
+    }
+    return 1;
+  });
 
   return (
     <>
