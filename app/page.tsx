@@ -40,6 +40,16 @@ const Page = () => {
               }{" "}
               and blogger.
             </p>
+            <p className="text-lg md:text-xl mb-6 leading-relaxed">
+              Feel free to reach out to me at{" "}
+              <a
+                href="mailto:contact@sumitso.in"
+                className="text-tealBright hover:underline font-medium"
+              >
+                contact@sumitso.in
+              </a>
+              .
+            </p>
           </div>
           <div className="lg:w-1/2 order-1 lg:order-2 mb-8 lg:mb-0">
             <img
