@@ -4,7 +4,6 @@ import { canela_th } from "./lib/fonts";
 import Article from "./components/article";
 import { LatestBlogPost } from "./components/post";
 import { LatestExploration } from "./components/explora-preview";
-import Link from "next/link";
 import SomeT from "./components/@ui/some-text";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -24,7 +23,6 @@ const Page = () => {
             <h4 className="py-2">
               <b>About</b>
             </h4>
-            <h2 className="py-1">Sumit So</h2>
             <p className="text-lg md:text-xl mt-2 leading-relaxed">
               I'm a developer advocate at{" "}
               {<SomeT href="https://www.videosdk.live/" text="videoSDK.live" />}
@@ -46,7 +44,7 @@ const Page = () => {
           <div className="lg:w-1/2 order-1 lg:order-2 mb-8 lg:mb-0">
             <img
               className="rounded-lg shadow-md max-w-full h-auto lg:max-w-md lg:ml-auto"
-              src="/sumit-home.png"
+              src="/sumit-so-animated.gif"
               alt="sumit so"
             />
           </div>
