@@ -25,7 +25,12 @@ const Page = () => {
             </h4>
             <p className="text-lg md:text-xl mt-2 leading-relaxed">
               I'm a developer advocate at{" "}
-              {<SomeT href="https://www.videosdk.live/" text="videoSDK.live" />}
+              {
+                <SomeT
+                  href="https://www.videosdk.live/blog/author/sumit-so"
+                  text="videoSDK.live"
+                />
+              }
               , a platform that makes it easy for developers to integrate
               real-time video, audio, and interactive features into their apps.
             </p>
