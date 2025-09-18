@@ -1,0 +1,238 @@
+2:I[7800,["711","static/chunks/711-e595bd352b270ed5.js","280","static/chunks/280-8665cbd02976e5ef.js","971","static/chunks/app/explora/%5B...slug%5D/page-167d4cc5a705e64e.js"],"default"]
+3:I[4979,["711","static/chunks/711-e595bd352b270ed5.js","280","static/chunks/280-8665cbd02976e5ef.js","971","static/chunks/app/explora/%5B...slug%5D/page-167d4cc5a705e64e.js"],"default"]
+9:I[2972,["711","static/chunks/711-e595bd352b270ed5.js","280","static/chunks/280-8665cbd02976e5ef.js","971","static/chunks/app/explora/%5B...slug%5D/page-167d4cc5a705e64e.js"],""]
+a:I[4707,[],""]
+c:I[6423,[],""]
+4:T926,JavaScript has become integral to modern web development, but its overuse can lead to various issues. This discussion isn’t about ranking tools but rather understanding the impact of relying too much on JavaScript. We’ll explore the hidden costs associated with this reliance and consider practical alternatives that can streamline development and improve performance.
+
+<p>&nbsp;</p>
+
+#### JavaScript's Big Impact
+
+<p>&nbsp;</p>
+
+While researching this topic, I found a video titled <SomeT text="The Lean Web by Chris Ferdinandi" href={"https://www.youtube.com/watch?v=h5CnfIAUmrU&t=1033s"} />, where he explained how the web has become bloated and over-engineered with JavaScript-heavy tooling. He talks about tools like React, Vue, Angular, and Svelte and how they bridge the gap between mediocre developers and experts. Well, this isn't a problem for developers—as they are happy to extend the functionalities of existing solutions rather than implementing everything from scratch. However, the real challenges faced by users who experience slower load times, higher data consumption, and reduced overall performance.
+It brings us to the hidden costs of using JavaScript frameworks.
+
+<p>&nbsp;</p>
+
+#### What Are the Hidden Costs of Frontend Frameworks?
+
+<p>&nbsp;</p>
+
+I came across an article titled <SomeT text="Hidden Costs of Frontend Frameworks" href="https://dev.to/manonbox/hidden-cost-of-frontend-frameworks-5pi" />, which highlighted several challenges often overlooked by developers. The most entertaing part for me was the comments—Some developers supported these tools, while others raised concerns. One of the primary concerns is the number of packages a framework installs, leading to unnecessary bloat and complexity and the challenge of keeping these packages current, as there is always the risk of deprecations—when a tool your project relies on becomes outdated or unsupported. It creates additional maintenance overhead and increases the likelihood of breaking changes.
+
+
+<p>&nbsp;</p>
+
+As we've explored, the over-reliance on JavaScript brings significant challenges, including performance issues and hidden costs. This sets the stage for our next chapter, JIT Compiler Bugs in Modern Browsers, where we’ll discuss the vulnerabilities introduced by JIT compilation and how they impact browser performance.5:T125d,Just-In-Time (JIT) compilation is a powerful optimization technique used in modern JavaScript engines to speed up the execution of frequently run code. JIT compilers, like those found in **V8**, **SpiderMonkey**, **JavaScriptCore**, and **ChakraCore**, play a significant role in improving JavaScript performance by translating bytecode into native machine code on-the-fly.
+
+However, despite its performance benefits, JIT compilation introduces several challenges and bugs that can impact both browser performance and security. This chapter will explore the common types of JIT compiler bugs and their implications.
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+![Javascript Execution in web](/explora/js-free-web/ch01/ch01-jit-c.png)
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+In a typical JavaScript execution pipeline, the engine begins by parsing the source code into an Abstract Syntax Tree (AST) and converting it into bytecode, which the interpreter can execute. As the code runs, the interpreter identifies "hot" code paths, which are executed frequently. The JIT compiler then optimizes these hot code paths by compiling them into assembly language for faster execution.
+
+<p>&nbsp;</p>
+
+#### Common JIT Compiler Bugs and Issues
+
+<p>&nbsp;</p>
+
+While JIT compilers significantly improve performance, they also introduce several vulnerabilities due to the complexity of their optimizations. The following are common issues found in JIT compilers:
+
+<p>&nbsp;</p>
+
+- **Miscompilation**: The JIT compiler might incorrectly optimize certain code paths, resulting in unexpected behavior. For instance, incorrect assumptions about variable types or control flow may lead to the removal of essential checks.
+
+<p>&nbsp;</p>
+
+- **Bounds-Check Elimination**: In some cases, the JIT compiler may incorrectly eliminate bounds checks when it mistakenly assumes that array accesses are safe. This can lead to out-of-bounds memory access, causing security risks like buffer overflows.
+  
+<p>&nbsp;</p>
+
+- **Redundancy Elimination**: JIT compilers often eliminate redundant type checks to optimize performance. However, incorrectly removing these checks can lead to type confusion, where a variable is assumed to be one type but is actually another during execution.
+
+<p>&nbsp;</p>
+
+- **Security Vulnerabilities**: Many JIT compiler bugs do not cause immediate crashes but silently expose security risks. These vulnerabilities can be exploited to execute arbitrary code, as seen in real-world exploits of **V8** and **JavaScriptCore**.
+
+<p>&nbsp;</p>
+
+#### Real-World Examples of JIT Bugs
+
+<p>&nbsp;</p>
+
+Several security competitions and bug bounty programs, like **Pwn2Own** and the **Tianfu Cup**, have demonstrated how JIT compiler bugs can be used to exploit browsers. Some notable examples include:
+
+<p>&nbsp;</p>
+
+- **String.lastIndexOf Off-By-One Bug** : This bug, found in **V8**, resulted from a miscalculation during range analysis. The JIT compiler incorrectly assumed the range of an index, leading to an out-of-bounds access without triggering a crash.
+
+<p>&nbsp;</p>
+
+- **Bounds Check Bypass in JavaScriptCore** : An exploit found in **JavaScriptCore** involved the elimination of bounds checks during array accesses, allowing attackers to read or write memory beyond the allocated space.
+
+<p>&nbsp;</p>
+
+#### Tools for Identifying JIT Bugs
+
+<p>&nbsp;</p>
+
+Given the complexity of JIT compilation, traditional fuzzing techniques may not be sufficient to detect non-crashing bugs. Advanced tools like **FuzzJIT** have been developed to specifically target JIT compiler bugs. These tools generate JavaScript test cases that trigger JIT compilation and then check for execution inconsistencies between interpreted and compiled code.
+
+<p>&nbsp;</p>
+
+- **FuzzJIT**: This tool leverages an oracle-enhanced fuzzing approach to expose JIT compiler bugs by ensuring that code produces identical results before and after JIT compilation. By focusing on common bug-prone areas such as bounds-check elimination and speculative optimization, FuzzJIT has uncovered numerous security vulnerabilities across major JavaScript engines.
+
+<p>&nbsp;</p>
+
+#### Conclusion
+
+<p>&nbsp;</p>
+
+As we've seen, the complexities of JIT compilation introduce performance and security risks. In the upcoming chapters, we’ll explore ways to reduce reliance on JavaScript across different areas. Next, in Client Side Alternatives, we’ll look at tools like HTMX and WebAssembly, which offer methods to create dynamic, efficient applications with less JavaScript. After that, in Server Side Alternatives, we’ll consider backend technologies such as Go, Python, and PHP, which provide more secure and scalable solutions for server-side rendering and logic.6:Te04,#### 1. HTMX
+
+<p>&nbsp;</p>
+
+HTMX is a powerful tool that allows developers to create dynamic web applications with minimal reliance on JavaScript. Here are some key points on how HTMX can significantly reduce JavaScript usage in frontend development:
+
+<p>&nbsp;</p>
+
+- **Hypermedia-Driven Applications** : HTMX enables the creation of hypermedia-driven web applications that utilize standard HTML forms and anchor tags for server interactions. This approach allows for the exchange of HTML over HTTP, which means that developers can build applications without needing extensive JavaScript for basic functionalities like CRUD operations.
+
+<p>&nbsp;</p>
+
+- **AJAX Functionality** :  By simply adding attributes like hx-boost to HTML elements, HTMX can enhance links and forms to work with AJAX. This means that when a user interacts with these elements, the page does not need to refresh entirely, providing a smoother user experience without the need for JavaScript to handle these interactions.
+
+<p>&nbsp;</p>
+
+- **Minimal Learning Curve** : HTMX is designed to stay close to existing web standards, which minimizes the conceptual load for developers. This means that developers familiar with HTML can easily adopt HTMX without needing to learn complex JavaScript frameworks.
+
+<p>&nbsp;</p>
+
+- **Fallback for Non-JavaScript Users** : One of the significant advantages of HTMX is its ability to fallback to standard HTML behavior if JavaScript is not enabled. This ensures that applications remain functional for all users, regardless of their browser settings.
+
+<p>&nbsp;</p>
+
+- **Integration with Other Libraries** : While HTMX provides a robust solution for reducing JavaScript, it also plays well with other libraries. This means that when more complex frontend functionalities are needed, developers can easily integrate additional libraries without losing the benefits of HTMX.
+
+<p>&nbsp;</p>
+
+In conclusion, HTMX offers a compelling alternative to traditional JavaScript-heavy frameworks by allowing developers to create dynamic, responsive web applications using primarily HTML. This approach not only simplifies development but also enhances performance and accessibility for users.
+
+<p>&nbsp;</p>
+
+#### 2. WebAssembly
+
+<p>&nbsp;</p>
+
+WebAssembly (Wasm) presents a promising alternative to JavaScript for client-side applications, potentially enhancing performance and reducing reliance on JavaScript. By enabling languages like C, C++, and Rust to run in the browser, WebAssembly can execute complex computations more efficiently.
+
+<p>&nbsp;</p>
+
+#### Performance Benefits
+
+<p>&nbsp;</p>
+
+- WebAssembly aims for performance parity with native code, achieving significant speed improvements for computationally intensive tasks <SomeT text="(Jangda et al., 2019)" href="https://typeset.io/pdf/not-so-fast-analyzing-the-performance-of-webassembly-vs-2z7wk5brp3.pdf" />.
+
+<p>&nbsp;</p>
+
+- Applications compiled to WebAssembly can run faster than their JavaScript counterparts, particularly in scenarios requiring heavy processing, such as gaming and data visualization <SomeT text="(Ménétrey et al., 2021)" href="https://arxiv.org/pdf/2103.15860" />.
+
+<p>&nbsp;</p>
+
+#### Example Applications
+
+<p>&nbsp;</p>
+
+- **Gaming** : WebAssembly is used in game engines to deliver high-performance graphics and physics simulations, reducing load times and improving responsiveness.
+
+<p>&nbsp;</p>
+
+- **Data Processing** : Applications like SQLite can be embedded and executed securely within a WebAssembly runtime, allowing for efficient data manipulation without heavy JavaScript overhead.7:Tdc3,Reducing or eliminating JavaScript usage on the server side involves adopting alternative technologies and techniques that can handle backend logic and rendering more efficiently. This shift can lead to improved performance, reduced resource consumption, and enhanced security. The discussion explore the best techniques and alternatives. But First ...
+
+<p>&nbsp;</p>
+
+#### Why JavaScript Is Effective for SPAs and SSR
+
+<p>&nbsp;</p>
+
+JavaScript, particularly with Node.js, is popular for server-side development due to its asynchronous nature and vast ecosystem. It's known for enhancing performance in SPAs and SSR by allowing real-time data fetching and seamless user experiences. However, it has several drawbacks, including:
+
+<p>&nbsp;</p>
+
+- **Performance Bottlenecks** : JavaScript’s dynamic nature can introduce inefficiencies, requiring heavy optimizations.
+
+- **Security Risks** : JavaScript is vulnerable to issues like prototype pollution and ReDoS attacks, leading to higher maintenance efforts.
+
+- **Complexity** : Its flexibility often leads to more complex codebases, increasing maintenance and testing burdens.
+
+<p>&nbsp;</p>
+
+#### Alternatives to JavaScript for SPAs and SSR
+
+<p>&nbsp;</p>
+
+When reducing JavaScript, several other languages provide distinct advantages in areas like performance, scalability, and security:
+
+<p>&nbsp;</p>
+
+#### **Go**
+
+<p>&nbsp;</p>
+
+- **Concurrency and Performance**: Known for its efficient concurrency model, Go handles multiple simultaneous requests with low CPU and memory usage, making it ideal for high-load SSR applications.
+
+- **Scalability**: Lightweight goroutines allow excellent scalability, handling a large number of connections effectively.
+
+- **Security**: Go’s static typing can mitigate runtime errors, adding robustness in server-side security.
+
+#### **Python (Django)**
+
+<p>&nbsp;</p>
+
+- **Rapid Development**: Django’s ORM and middleware capabilities make it well-suited for rapid development and scaling through complex systems.
+
+- **Request Processing**: Django delivers reliable request processing, though it may consume more resources in high-load scenarios.
+
+- **Security**: Django offers strong security features, reducing client-side vulnerabilities in SSR setups.
+
+#### **PHP (Laravel)**
+
+<p>&nbsp;</p>
+
+- **Speed Optimization**: Laravel enables faster initial development and optimizes server-side performance with caching mechanisms.
+
+- **Scalability**: Suitable for small to medium-sized applications, Laravel offers good scalability through various plugins and tools.
+
+- **SEO and SSR**: PHP’s server-side rendering enhances SEO by delivering fully rendered HTML for search engines to index.
+
+#### **Ruby (Rails)**
+
+<p>&nbsp;</p>
+
+- **Developer Productivity**: Ruby on Rails emphasizes developer productivity and ease of use, making it suitable for rapid application development.
+
+- **Scalability**: While Rails isn’t as scalable as Go, it handles moderate scalability needs effectively with built-in tools.
+
+- **Security and SEO**: Rails provides secure defaults and SSR capabilities, which are important for secure, SEO-friendly web applications.
+
+<p>&nbsp;</p>
+
+#### Conclusion
+
+<p>&nbsp;</p>
+
+alternatives like Go, Python, Ruby, and PHP offer better performance, resource management, and security in certain use cases, making them worthy considerations for developers aiming to reduce JavaScript dependency. The decision ultimately depends on project-specific needs such as scalability, performance, and developer expertise.b:["slug","methods-for-js-free-web-development","c"]
+0:["COsPjMACoqe3uDB1m6dcC",[[["",{"children":["explora",{"children":[["slug","methods-for-js-free-web-development","c"],{"children":["__PAGE__?{\"slug\":[\"methods-for-js-free-web-development\"]}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["explora",{"children":[["slug","methods-for-js-free-web-development","c"],{"children":["__PAGE__",{},[["$L1",["$","div",null,{"className":"flex flex-col","children":[["$","$L2",null,{}],["$","div",null,{"className":"flex relative","children":[["$","$L3",null,{"exploration":{"exploration":"methods-for-js-free-web-development","metadata":{"title":"JavaScript is Killing Web Browsers: We Need Better Alternatives","publishedAt":"2024-09-01","summary":"A comprehensive exploration of modern JavaScript frameworks including React, Vue, and Angular.","image":"/images/javascript-frameworks.png"},"overviewContent":"<YouTube id = \"HWXg-d9DY2I\" />\n\n<p>&nbsp;</p>\n\nJavaScript is unpredictable, old, and sometimes makes me vomit. I don't want to use it anymore. Now, this line is perfect for grabbing your attention, but at the same time, it's false because developers can't live without JavaScript, particularly front-end devs. \n\nThis exploration is about finding ways to avoid JavaScript. When I say \"avoid JavaScript,\" I'm not suggesting using something that is transpiled into JavaScript. What I actually mean is that I just want very minimal JavaScript in the final output of my application code.","chapters":[{"metadata":{"title":"The Over-Reliance on JavaScript","summary":"This is chapter one"},"slug":"ch01","content":"$4"},{"metadata":{"title":"JIT Compiler Bugs in Modern Browsers","summary":"This chapter discusses common issues and security risks introduced by bugs in JavaScript JIT compilers."},"slug":"ch02","content":"$5"},{"metadata":{"title":"Client Side Alternatives","summary":"This is chapter two"},"slug":"ch03","content":"$6"},{"metadata":{"title":"Server Side Alternatives","summary":"This is chapter Three"},"slug":"ch04","content":"$7"}]},"chapterSlug":"$undefined"}],["$","main",null,{"className":"sm:p-2 w-[100%] sm:w-[80%] h-full mx-auto text-left","children":["$","div",null,{"className":"flex flex-col min-h-full","children":["$","div",null,{"className":"flex-grow px-8 py-6","children":[[["$","h2",null,{"className":"__className_fda5cd text-5xl mb-10 text-grey leading-[54px]","children":"JavaScript is Killing Web Browsers: We Need Better Alternatives"}],["$","article",null,{"className":"__className_2088c0 prose prose-lg prose-img:rounded-lg prose-headings:font-semibold prose-a:text-tealBright hover:prose-a:underline","children":"$L8"}]],["$","div",null,{"className":"flex gap-8 justify-start mt-8 py-2 px-8","children":[null,["$","$L9",null,{"href":"/explora/methods-for-js-free-web-development/ch01","children":["$","button",null,{"className":"text-tealBright","children":"Next"}]}]]}]]}]}]}]]}]]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/4ed3ce2f18ef1e69.css","precedence":"next","crossOrigin":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/a808947e015cc1a7.css","precedence":"next","crossOrigin":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/css/b629873ec7beaecb.css","precedence":"next","crossOrigin":"$undefined"}]]],null],null]},[null,["$","$La",null,{"parallelRouterKey":"children","segmentPath":["children","explora","children","$b","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Lc",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$La",null,{"parallelRouterKey":"children","segmentPath":["children","explora","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Lc",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/1fdd5b4e3ad23aab.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"antialiased bg-[#f6f5f1] w-full lg:mx-auto","children":["$","main",null,{"className":"flex-auto min-w-0 flex flex-col md:px-0","children":["$","div",null,{"className":"min-w-full text-center","children":["$","$La",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Lc",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}]}]}]}]],null],null],["$Ld",null]]]]
+8:[["$","div",null,{"className":"my-8","children":["$","iframe",null,{"className":"aspect-video w-full rounded-lg shadow-md","src":"https://www.youtube.com/embed/HWXg-d9DY2I","title":"YouTube Video Player","allow":"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"}]}],"\n",["$","p",null,{"children":" "}],"\n",["$","p",null,{"className":"__className_cc3d6c text-grey text-lg sm:text-xl leading-relaxed my-4","children":"JavaScript is unpredictable, old, and sometimes makes me vomit. I don't want to use it anymore. Now, this line is perfect for grabbing your attention, but at the same time, it's false because developers can't live without JavaScript, particularly front-end devs."}],"\n",["$","p",null,{"className":"__className_cc3d6c text-grey text-lg sm:text-xl leading-relaxed my-4","children":"This exploration is about finding ways to avoid JavaScript. When I say \"avoid JavaScript,\" I'm not suggesting using something that is transpiled into JavaScript. What I actually mean is that I just want very minimal JavaScript in the final output of my application code."}]]
+d:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"JavaScript is Killing Web Browsers: We Need Better Alternatives"}],["$","meta","3",{"name":"description","content":"A comprehensive exploration of modern JavaScript frameworks including React, Vue, and Angular."}],["$","meta","4",{"property":"og:title","content":"JavaScript is Killing Web Browsers: We Need Better Alternatives"}],["$","meta","5",{"property":"og:description","content":"A comprehensive exploration of modern JavaScript frameworks including React, Vue, and Angular."}],["$","meta","6",{"property":"og:url","content":"https://www.sumitso.in/explora/methods-for-js-free-web-development/"}],["$","meta","7",{"property":"og:image","content":"https://www.sumitso.in/images/javascript-frameworks.png"}],["$","meta","8",{"property":"og:type","content":"article"}],["$","meta","9",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","10",{"name":"twitter:title","content":"JavaScript is Killing Web Browsers: We Need Better Alternatives"}],["$","meta","11",{"name":"twitter:description","content":"A comprehensive exploration of modern JavaScript frameworks including React, Vue, and Angular."}],["$","meta","12",{"name":"twitter:image","content":"https://www.sumitso.in/images/javascript-frameworks.png"}],["$","link","13",{"rel":"icon","href":"/icon.png?ae0ccd91b0031962","type":"image/png","sizes":"67x67"}],["$","meta","14",{"name":"next-size-adjust"}]]
+1:null

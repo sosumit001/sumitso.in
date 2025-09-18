@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <rss version="2.0">
+    <channel>
+        <title>My Portfolio</title>
+        <link>https://www.sumitso.in</link>
+        <description>This is my portfolio RSS feed</description>
+        <item>
+          <title>Build and Ship Your Own React Component Library to NPM</title>
+          <link>https://www.sumitso.in/blog/react-ts-component-library</link>
+          <description>Learn how to build, test, and publish your own React component library to NPM with TypeScript in this step-by-step tutorial. Master essential tools and best practices for creating shareable React TypeScript libraries.</description>
+          <pubDate>Sun, 01 Jun 2025 00:00:00 GMT</pubDate>
+        </item>
+<item>
+          <title>Javascript free web</title>
+          <link>https://www.sumitso.in/blog/javascript-free-web</link>
+          <description>JavaScript is unpredictable, old, and sometimes makes me vomit. I don't want to use it anymore. Now, this line is perfect for grabbing your attention</description>
+          <pubDate>Sat, 07 Dec 2024 00:00:00 GMT</pubDate>
+        </item>
+<item>
+          <title>5 Essential Steps to Get Started with OpenAI API in 2024</title>
+          <link>https://www.sumitso.in/blog/essential-steps-start-openai-api</link>
+          <description>​Start your OpenAI API journey with these 5 essential steps. From account setup and pricing to code integration, get started with ease and confidence.</description>
+          <pubDate>Thu, 20 Jun 2024 00:00:00 GMT</pubDate>
+        </item>
+<item>
+          <title>Compile C/C++ to WebAssembly</title>
+          <link>https://www.sumitso.in/blog/compiling-c-cpp-to-webassembly-guide</link>
+          <description>Learn how to compile C/C++ code into WebAssembly with our comprehensive guide. Discover tools like Emscripten and LLVM for faster web applications.</description>
+          <pubDate>Wed, 19 Jun 2024 00:00:00 GMT</pubDate>
+        </item>
+<item>
+          <title>Part 01: React SSR From Scratch!</title>
+          <link>https://www.sumitso.in/blog/react-ssr-part-01</link>
+          <description>Learning how to build a React SSR application from scratch will help in understanding the basic concepts of Server-Side Rendering.</description>
+          <pubDate>Wed, 22 May 2024 00:00:00 GMT</pubDate>
+        </item>
+<item>
+          <title>A Cartoon Guide: How React Clients Operate!</title>
+          <link>https://www.sumitso.in/blog/a-cartoon-intro-building-react-from-scratch</link>
+          <description>A cartoon introduction that helps you understand how to build a working prototype of a React application from scratch without using any tools.</description>
+          <pubDate>Fri, 10 May 2024 00:00:00 GMT</pubDate>
+        </item>
+<item>
+          <title>React 19: Smarter State Management with useTransition, useAction, and useFormStatus</title>
+          <link>https://www.sumitso.in/blog/react-19-actions</link>
+          <description>Explore the new state management features in React 19, making React development smoother and more efficient.</description>
+          <pubDate>Sun, 05 May 2024 00:00:00 GMT</pubDate>
+        </item>
+    </channel>
+  </rss>

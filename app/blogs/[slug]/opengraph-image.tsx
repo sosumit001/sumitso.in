@@ -10,6 +10,14 @@ export const alt = "Sumit So - Blog Post"; // More specific alt text
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+// Generate static params for all blog posts
+export async function generateStaticParams() {
+  const posts = getBlogPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
 // Image generation
 export default async function Image({ params }: { params: { slug: string } }) {
   try {

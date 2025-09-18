@@ -5,7 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeHighlight from "rehype-highlight";
 import langHttp from "highlight.js/lib/languages/javascript";
 import langNginx from "highlight.js/lib/languages/nginx";
-import "highlight.js/styles/github-dark.css";
+import "highlight.js/styles/github.css";
 import { canela, canela_regu } from "@/lib/fonts";
 
 import SomeT from "./@ui/some-text";

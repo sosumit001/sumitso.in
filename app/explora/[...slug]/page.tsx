@@ -8,6 +8,24 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { baseUrl } from "@/sitemap";
 
+// Generate static params for all exploration routes
+export async function generateStaticParams() {
+  const explorations = getExplorations();
+  const params: { slug: string[] }[] = [];
+
+  explorations.forEach((exploration) => {
+    // Add overview page
+    params.push({ slug: [exploration.exploration] });
+
+    // Add all chapter pages
+    exploration.chapters.forEach((chapter) => {
+      params.push({ slug: [exploration.exploration, chapter.slug] });
+    });
+  });
+
+  return params;
+}
+
 // Dynamically generate metadata for SEO
 export function generateMetadata({ params }: { params: { slug: string[] } }) {
   const explorations = getExplorations();
