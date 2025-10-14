@@ -1,5 +1,6 @@
 import { getBlogPosts } from "@/blogs/utils";
 import { getExplorations } from "@/explora/utils";
+import { getStoriesPosts } from "@/stories/utils";
 
 export const baseUrl = "https://www.sumitso.in";
 
@@ -18,11 +19,17 @@ export default async function sitemap() {
     }))
   );
 
+  // Fetch stories posts
+  let storiesPosts = getStoriesPosts().map((post) => ({
+    url: `${baseUrl}/stories/${post.slug}`,
+    lastModified: post.metadata.publishedAt,
+  }));
+
   // Base routes
-  let routes = ["", "/blogs", "/explora"].map((route) => ({
+  let routes = ["", "/blogs", "/explora", "/stories"].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
-  return [...routes, ...blogs, ...explorations];
+  return [...routes, ...blogs, ...explorations, ...storiesPosts];
 }

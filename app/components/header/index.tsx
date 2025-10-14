@@ -54,6 +54,7 @@ const Header = () => {
           <MenuLink href="/" value="Home" />
           <MenuLink href="/explora" value="Explora" postText="+" />
           <MenuLink href="/blogs" value="Blogs" />
+          <MenuLink href="/stories" value="Stories" />
         </div>
       </div>
       <div className="hidden max-md:flex justify-between relative w-[100%] px-4">
@@ -130,6 +131,15 @@ const Header = () => {
                 onClick={toggleMenuButton}
               >
                 Blogs
+              </Link>
+            </li>
+            <li className="border-t border-b-0 border-[0.1rem] flex leading-1">
+              <Link
+                className="px-3 w-full text-left text-grey py-2"
+                href="/stories"
+                onClick={toggleMenuButton}
+              >
+                Stories
               </Link>
             </li>
             <li className="border-t border-b border-[0.1rem] flex leading-1">

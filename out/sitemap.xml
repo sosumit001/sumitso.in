@@ -2,15 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://www.sumitso.in</loc>
-<lastmod>2025-09-18</lastmod>
+<lastmod>2025-10-14</lastmod>
 </url>
 <url>
 <loc>https://www.sumitso.in/blogs</loc>
-<lastmod>2025-09-18</lastmod>
+<lastmod>2025-10-14</lastmod>
 </url>
 <url>
 <loc>https://www.sumitso.in/explora</loc>
-<lastmod>2025-09-18</lastmod>
+<lastmod>2025-10-14</lastmod>
+</url>
+<url>
+<loc>https://www.sumitso.in/stories</loc>
+<lastmod>2025-10-14</lastmod>
 </url>
 <url>
 <loc>https://www.sumitso.in/blogs/a-cartoon-intro-building-react-from-scratch</loc>
@@ -75,5 +79,9 @@
 <url>
 <loc>https://www.sumitso.in/explora/webassembly-tutorial/ch06-js-wasm-data-marshaling</loc>
 <lastmod>2025-07-03</lastmod>
+</url>
+<url>
+<loc>https://www.sumitso.in/stories/gff-mumbai-getting-lost</loc>
+<lastmod>2025-10-15</lastmod>
 </url>
 </urlset>
