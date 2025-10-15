@@ -6,6 +6,13 @@ import Footer from "@/components/footer";
 import { canela_regu } from "@/lib/fonts";
 import { formatDate } from "../utils";
 
+// Remove a leading H1 and an immediate horizontal rule (---) from MDX content
+function stripTopHeadingAndHr(mdx: string) {
+  return mdx
+    .replace(/^\s*# [^\n]*\n(?:\s*\n)*/m, "") // strip leading H1 and following blank lines
+    .replace(/^\s*---\s*\n(?:\s*\n)*/m, ""); // strip immediate hr and following blank lines if present
+}
+
 export async function generateStaticParams() {
   let posts = getStoriesPosts();
 
@@ -63,6 +70,8 @@ export default function StoriesPost({ params }) {
     notFound();
   }
 
+  const sanitizedContent = stripTopHeadingAndHr(post.content);
+
   return (
     <div className="min-h-screen bg-gradient-to-b">
       <Header />
@@ -92,7 +101,7 @@ export default function StoriesPost({ params }) {
           )}
 
           <div className="prose prose-lg max-w-none">
-            <CustomMDX source={post.content} />
+            <CustomMDX source={sanitizedContent} />
           </div>
         </article>
       </div>
