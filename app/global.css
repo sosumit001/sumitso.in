@@ -53,11 +53,11 @@ body {
 }
 
 .prose pre {
-  @apply bg-[#1e293b] text-[#f8fafc] p-4 rounded-lg overflow-auto my-6;
+  @apply bg-gray-50 text-gray-900 p-4 rounded-lg border border-gray-200 overflow-auto my-6;
 }
 
 .prose pre code {
-  @apply bg-transparent text-[#f8fafc] p-0 text-sm sm:text-base;
+  @apply bg-transparent text-gray-900 p-0 text-sm sm:text-base;
 }
 
 .prose blockquote {

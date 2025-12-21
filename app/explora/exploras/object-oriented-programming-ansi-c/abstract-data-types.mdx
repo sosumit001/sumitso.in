@@ -1,0 +1,214 @@
+---
+title: "Abstract Data Type in C"
+summary: "Object-oriented programming in ANSI-C is a disciplined approach that implements information hiding, inheritance, and polymorphism by leveraging standard C features like structures and function pointers"
+---
+
+
+An Abstract Data Type represents a generic data object with a well-defined set of logical properties and behavioral characteristics that are independent of implementation details. Rather than focusing on how data is stored internally, an ADT specifies what operations can be performed on data and what those operations should accomplish.
+
+<YouTube id = "VwPJGWxIDhM" />
+
+At its core, an ADT defines:
+
+- **A set of values**: The domain of data the type can represent
+- **A set of operations**: Functions that can be performed on those values
+- **Behavioral specifications**: What each operation should do and return
+
+An ADT can be characterized through abstract constructors—operations that create instances—and abstract observations—operations that retrieve information about instances. The behavior of an ADT is specified by defining what each observation should return when applied to each constructor's result.
+
+This approach originated from academic research and was formalized in languages like CLU. It serves as a foundational principle for creating maintainable, reusable code by separating interface from implementation. Crucially, clients interact with ADTs through their public interface without knowledge of underlying representation details.
+
+## 2. ADT vs OOP: Conceptual Relationship
+
+While often conflated, Abstract Data Types and Object-Oriented Programming represent fundamentally different approaches to data abstraction.
+
+### Core Distinction
+
+**ADTs use type abstraction** to hide implementation details. The mechanism is a type boundary: clients declare variables of an abstract type but cannot inspect the representation.
+
+**OOP uses procedural abstraction** to achieve abstraction. Data becomes abstract because it is accessed only through procedural interfaces. Individual objects act as clients of each other.
+
+### Organizational Contrast
+
+Consider a data abstraction as a matrix with constructors on one axis and observations on the other:
+
+- **ADTs decompose by observations**: Each observation becomes an operation examining the underlying representation
+- **OOP decompose by constructors**: Each constructor defines an object template; observations become methods
+
+This fundamental difference has consequences: ADTs excel at adding new operations but struggle with new constructors. OOP excels at adding new constructors but struggles when adding operations across all existing types.
+
+## 3. Why ANSI C Can Support ADTs
+
+C lacks built-in object-oriented or abstract data type features, yet it provides all necessary primitives.
+
+### Key C Mechanisms
+
+**Opaque Types**: C's forward declaration allows declaring a pointer to an incompletely-defined structure. Clients can declare variables without seeing the definition.
+
+**Separate Compilation**: The C module system naturally supports the separation of interface from implementation.
+
+**Function Pointers**: Enable implementing virtual method dispatch manually.
+
+**Structs and Typedefs**: Structures bundle data; typedef creates new type names.
+
+**Memory Management Control**: Manual allocation grants precise control over object lifetimes.
+
+## 4. Encapsulation in C Using Header and Source Files
+
+### Header File Role
+
+The header file (.h) exposes the public interface with type declarations and function prototypes, withholding structure definitions:
+
+```c
+/* Point.h - Public interface */
+typedef struct Point *Point;  /* Opaque pointer type */
+Point Point_new(int x, int y);
+void Point_destroy(Point p);
+void Point_move(Point p, int new_x, int new_y);
+int Point_getX(Point p);
+int Point_getY(Point p);
+
+```
+
+### Source File Role
+
+The source file (.c) contains the complete structure definition and implementations:
+
+```c
+/* Point.c - Private implementation */
+struct Point {
+    int x;
+    int y;
+};
+
+Point Point_new(int x, int y) {
+    Point p = (Point)malloc(sizeof(struct Point));
+    if (p) {
+        p->x = x;
+        p->y = y;
+    }
+    return p;
+}
+
+```
+
+This design enforces encapsulation through compiler mechanisms: clients cannot access struct members, cannot create stack instances, and can only use exported functions.
+
+## 5. Example: Point ADT Implemented Using OOP Style in ANSI C
+
+The Point ADT demonstrates fundamental principles. A Point represents a 2D coordinate with operations to manipulate it.
+
+### 5.1 Public Interface (Point.h)
+
+```c
+#ifndef POINT_H
+#define POINT_H
+
+// set of values
+extern const void * Point;
+// sef of operations
+
+void * new_point(int x, int y);
+void move_point(void * _self, int dx, int dy);
+void print_point(void * _self);
+
+void delete_point(void * self);
+
+#endif
+```
+
+### 5.2 Hidden Implementation (Point.c)
+
+```c
+#include "stdio.h"
+#include "stdlib.h"
+#include "Point.h"
+
+struct Point { int x, y; };
+
+void * new_point(int x, int y) {
+    // allocate some memory
+    struct Point * p = malloc(sizeof(Point));
+
+    p->x = x;
+    p->y = y;
+
+    return p;
+}
+
+void move_point(void * _self, int dx, int dy) {
+    struct Point *p = _self;
+
+    p->x += dx;
+    p->y += dy;
+}
+
+void print_point(void * _self) {
+    struct Point *p = _self;
+    printf("Point is at x, y: %d, %d\n", p->x, p->y);
+}
+
+void delete_point(void * self) {
+    free(self);
+}
+```
+
+### 5.3 Client Usage (main.c)
+
+```c
+
+#include "stdio.h"
+#include "Point.h"
+
+int main() {
+    void * p = new_point(15, 20);
+
+    move_point(p, 5, 5);
+    print_point(p);
+
+    move_point(p, 5, 5);
+    print_point(p);
+
+    delete_point(p);
+
+    return 0;
+}
+```
+
+## 6. How This Design Achieves OOP Principles
+
+The Point ADT exemplifies core OOP principles in ANSI C:
+
+### Encapsulation
+
+Data is encapsulated within the structure, accessible only through defined operations. Clients cannot directly modify coordinates.
+
+### Abstraction
+
+Clients interact with Points as abstract entities, unaware of internal representation. Implementation changes don't require client modifications.
+
+### Modularity
+
+The Point ADT is self-contained with clear boundaries: fixed public API, private implementation, and minimal dependencies.
+
+### Data Hiding
+
+Structure members are completely inaccessible from client code. All access flows through the interface.
+
+### Method Dispatch
+
+Functions like Point_move act as methods that operate on an object and maintain its state.
+
+## 7. Key Takeaways
+
+**ADTs in ANSI C represent a powerful design pattern:**
+
+1. **Type Safety with Flexibility**: Opaque pointer types provide compile-time type checking while allowing implementation changes.
+2. **Clear Separation of Concerns**: Header files define public contracts; source files contain private implementation.
+3. **Compatibility with Embedded Systems**: Manual memory management makes C ADTs ideal for resource-constrained environments.
+4. **Educational Value**: Implementing ADTs in C reveals how language-level features are built from primitives.
+5. **Legacy and Current Relevance**: Much existing C code uses ADT patterns. Understanding these principles is essential for working with established systems.
+6. **Orthogonal Design Patterns**: ADTs and OOP represent complementary approaches. C enables both through disciplined use of modules and function pointers.
+7. **Scaling Considerations**: While single-level inheritance is practical in C, more complex OOP hierarchies become burdensome.
+
+The techniques described have proven effective in production systems for decades. The Linux kernel, embedded systems, and numerous libraries employ these patterns. They remain relevant today for understanding software design fundamentals and for contexts where C is the appropriate language choice.
