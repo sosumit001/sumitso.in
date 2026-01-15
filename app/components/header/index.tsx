@@ -145,13 +145,20 @@ const Header = () => {
             </li>
             <li className="border-t border-b-0 border-[0.1rem] flex leading-1">
               <Link
-                className="px-3 w-full text-left text-grey py-2 flex items-center justify-between"
+                className="px-3 w-full text-left text-grey py-2 flex items-center justify-start gap-1"
                 href="/hire-me-as-dev-rel"
                 target="_blank"
                 onClick={toggleMenuButton}
               >
                 Experience
-                <span className="text-tealBright font-bold">↗</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-4 h-4 text-tealBright"
+                >
+                  <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clipRule="evenodd" />
+                </svg>
               </Link>
             </li>
             <li className="border-t border-b border-[0.1rem] flex leading-1">
