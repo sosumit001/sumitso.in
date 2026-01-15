@@ -5,7 +5,7 @@ import { getBlogPosts } from "./utils";
 export const runtime = "nodejs";
 
 // Image metadata
-export const alt = "Sumit So - Blogs";
+export const alt = "Sumit Mor - Blogs";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

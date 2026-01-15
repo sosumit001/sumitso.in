@@ -3,26 +3,26 @@ import "../global.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sumit So | Stories",
+  title: "Sumit Mor | Stories",
   description:
-    "Stories, experiences, and reflections from Sumit So. Tales from conferences, life experiences, and the human side of being a developer.",
+    "Stories, experiences, and reflections from Sumit Mor. Tales from conferences, life experiences, and the human side of being a developer.",
   openGraph: {
-    title: "Sumit So | Stories",
+    title: "Sumit Mor | Stories",
     description:
-      "Stories, experiences, and reflections from Sumit So. Tales from conferences, life experiences, and the human side of being a developer.",
+      "Stories, experiences, and reflections from Sumit Mor. Tales from conferences, life experiences, and the human side of being a developer.",
     type: "website",
     locale: "en_US",
-    siteName: "Sumit So",
+    siteName: "Sumit Mor",
     url: "/stories",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sumit So | Stories",
+    title: "Sumit Mor | Stories",
     description:
-      "Stories, experiences, and reflections from Sumit So. Tales from conferences, life experiences, and the human side of being a developer.",
+      "Stories, experiences, and reflections from Sumit Mor. Tales from conferences, life experiences, and the human side of being a developer.",
   },
   keywords: [
-    "Sumit So",
+    "Sumit Mor",
     "Stories",
     "Experiences",
     "Conferences",
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     "Reflections",
     "Thoughts",
   ],
-  authors: [{ name: "Sumit So", url: "https://sumitso.in" }],
-  creator: "Sumit So",
-  publisher: "Sumit So",
+  authors: [{ name: "Sumit Mor", url: "https://sumitso.in" }],
+  creator: "Sumit Mor",
+  publisher: "Sumit Mor",
   alternates: {
     canonical: "/stories",
   },

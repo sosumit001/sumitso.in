@@ -6,7 +6,7 @@ import { getBlogPosts } from "@/blogs/utils";
 export const runtime = "nodejs";
 
 // Image metadata
-export const alt = "Sumit So - Blog Post"; // More specific alt text
+export const alt = "Sumit Mor - Blog Post"; // More specific alt text
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -34,8 +34,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
     // 2. Handle the case where the post is not found
     if (!post) {
       return new Response(
-        `Failed to generate OG Image: Post not found for slug: ${
-          params.slug
+        `Failed to generate OG Image: Post not found for slug: ${params.slug
         }. Available slugs: ${allPosts.map((p) => p.slug).join(", ")}`,
         {
           status: 404,
@@ -145,7 +144,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
               }}
             >
               <div style={{ fontSize: 24, fontWeight: 600, color: "#353534" }}>
-                {"Sumit So"}
+                {"Sumit Mor"}
               </div>
               <div style={{ fontSize: 20, color: "#6b7280" }}>
                 {formattedDate}

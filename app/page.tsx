@@ -9,7 +9,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 
 export const metadata: Metadata = {
-  title: "Sumit So.",
+  title: "Sumit Mor.",
 };
 
 const Page = () => {
@@ -35,7 +35,7 @@ const Page = () => {
               real-time video, audio, and interactive features into their apps.
             </p>
             <p className="text-lg md:text-xl mb-6 leading-relaxed">
-              I'm Sumit So, and I'm really happy you found your way here. This
+              I'm Sumit Mor, and I'm really happy you found your way here. This
               is where I share my journey as a{" "}
               {
                 <SomeT
@@ -60,7 +60,7 @@ const Page = () => {
             <img
               className="rounded-lg shadow-md max-w-full h-auto lg:max-w-md lg:ml-auto"
               src="/sumit-so-animated.gif"
-              alt="sumit so"
+              alt="Sumit Mor"
             />
           </div>
         </div>

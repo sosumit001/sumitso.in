@@ -5,7 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeHighlight from "rehype-highlight";
 import langHttp from "highlight.js/lib/languages/javascript";
 import langNginx from "highlight.js/lib/languages/nginx";
-import "highlight.js/styles/github.css";
+import "highlight.js/styles/atom-one-light.css";
 import { canela, canela_regu } from "@/lib/fonts";
 
 import SomeT from "./@ui/some-text";
@@ -176,7 +176,7 @@ function CustomBlockquote(props) {
 
 function CodeBlock(props) {
   return (
-    <pre className="bg-[#1e293b] text-[#f8fafc] p-4 rounded-lg overflow-auto my-6 text-sm sm:text-base">
+    <pre className="bg-gray-50 text-gray-900 p-4 rounded-lg border border-gray-200 overflow-auto my-6 text-sm sm:text-base">
       {props.children}
     </pre>
   );

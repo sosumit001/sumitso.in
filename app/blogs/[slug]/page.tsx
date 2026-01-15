@@ -45,7 +45,7 @@
 //           url: ogImage,
 //           width: 1200,
 //           height: 630,
-//           alt: "Sumit So - Blog Post",
+//           alt: "Sumit Mor - Blog Post",
 //         },
 //       ],
 //     },
@@ -209,7 +209,7 @@ export default function Blog({ params }) {
               url: `${baseUrl}/blogs/${post.slug}`,
               author: {
                 "@type": "Person",
-                name: "Sumit So", // Changed from "My Portfolio"
+                name: "Sumit Mor", // Changed from "My Portfolio"
               },
             }),
           }}

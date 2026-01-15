@@ -6,7 +6,7 @@ import { ImageResponse } from "next/og";
 // export const runtime = "edge";
 
 // Image metadata
-export const alt = "Sumit So - Developer Advocate & Content Creator";
+export const alt = "Sumit Mor - Developer Advocate & Content Creator";
 export const size = {
   width: 1200,
   height: 630,
@@ -62,7 +62,7 @@ export default async function Image() {
               marginBottom: "20px",
             }}
           >
-            Sumit So is a developer advocate at videoSDK.live, a platform that
+            Sumit Mor is a developer advocate at videoSDK.live, a platform that
             makes it easy for developers to integrate real-time video, audio,
             and interactive features.
           </div>
