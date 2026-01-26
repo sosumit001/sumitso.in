@@ -64,6 +64,67 @@ function YouTube({ id }) {
   );
 }
 
+
+// function QAItems ({question, answer, speaker}) {
+//   return (
+//     <div className="my-8 border-l-4 border-tealBright pl-6">
+//       {/* Question */}
+//       <div className="mb-6">
+//         <div className="text-lg font-semibold text-black mb-2">
+//           <CustomMDX source={question} />
+//         </div>
+//       </div>
+
+//       {/* Answer */}
+//       <div className="mb-4">
+//         <p className="text-sm font-semibold text-tealBright mb-2">{speaker}</p>
+//         <div className={`${canela_regu.className} text-grey text-lg sm:text-xl leading-relaxed my-4`}>
+//           <CustomMDX source={answer} />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+function QAItems({ question, answer, speaker }) {
+  return (
+    <div className="my-8 p-6 border border-gray-200 rounded-lg shadow-md bg-white">
+      {/* Question */}
+      <div className="mb-6">
+        <div className="text-lg font-semibold text-black mb-2">
+          <CustomMDX source={question} />
+        </div>
+      </div>
+
+      {/* Answer */}
+      <div className="mb-4">
+        <p className="text-sm font-bold text-teal-600 mb-1">
+          {speaker}:
+        </p>
+        <div className="text-gray-700 text-lg sm:text-xl leading-relaxed">
+          <CustomMDX source={answer} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function InterviewQA (props) {
+  let items = props.items;
+  return (
+    <div className="my-8 space-y-4">
+      {items.map((item, index) => (
+        <QAItems 
+          key={index} 
+          question={item.question} 
+          answer={item.answer}
+          speaker={item.speaker}
+        />
+      ))}
+    </div>
+  );
+};
+
 function CustomLink(props) {
   let href = props.href;
 
@@ -210,6 +271,7 @@ let components = {
   code: InlineCode,
   Table,
   YouTube,
+  InterviewQA,
   SomeT,
 };
 
