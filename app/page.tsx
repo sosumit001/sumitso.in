@@ -7,6 +7,7 @@ import { LatestExploration } from "./components/explora-preview";
 import SomeT from "./components/@ui/some-text";
 import Header from "./components/header";
 import Footer from "./components/footer";
+import Timeline from "./components/timeline";
 
 export const metadata: Metadata = {
   title: "Sumit Mor.",
@@ -20,22 +21,13 @@ const Page = () => {
         {/* Hero section with responsive layout */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12 mt-8 mb-12">
           <div className="lg:w-1/2 order-2 lg:order-1">
-            <h4 className="py-2">
-              <b>About</b>
-            </h4>
-            <p className="text-lg md:text-xl mt-2 leading-relaxed">
-              I'm a developer advocate at{" "}
-              {
-                <SomeT
-                  href="https://www.videosdk.live/blog/author/sumit-so"
-                  text="videoSDK.live"
-                />
-              }
-              , a platform that makes it easy for developers to integrate
-              real-time video, audio, and interactive features into their apps.
-            </p>
+            <b className="text-xs">About</b>
+            <h1 className="py-2 text-2xl">
+              Sumit Mor
+            </h1>
+
             <p className="text-lg md:text-xl mb-6 leading-relaxed">
-              I'm Sumit Mor, and I'm really happy you found your way here. This
+              I'm really happy you found your way here. This
               is where I share my journey as a{" "}
               {
                 <SomeT
@@ -45,7 +37,7 @@ const Page = () => {
               }{" "}
               and blogger.
             </p>
-            <p className="text-lg md:text-xl mb-6 leading-relaxed">
+            {/* <p className="text-lg md:text-xl mb-6 leading-relaxed">
               Feel free to reach out to me at{" "}
               <a
                 href="mailto:contact@sumitso.in"
@@ -54,7 +46,9 @@ const Page = () => {
                 contact@sumitso.in
               </a>
               .
-            </p>
+            </p> */}
+
+            <Timeline />
           </div>
           <div className="lg:w-1/2 order-1 lg:order-2 mb-8 lg:mb-0">
             <img
