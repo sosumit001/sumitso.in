@@ -2,6 +2,8 @@ import React from "react";
 import "./global.css";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { canela_th } from "./lib/fonts";
+import SomeT from "./components/@ui/some-text";
 
 export const metadata: Metadata = {
   title: "Sumit Mor - Developer Advocate & Content Creator",
@@ -47,6 +49,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-[#f6f5f1] w-full lg:mx-auto">
+        <div className={`bg-white text-center ${canela_th.className} py-2 text-sm`}>
+          I'm on X - <a href="https://x.com/howdevyou" className="text-black underline" target="_blank" rel="noopener noreferrer">Follow me</a> for updates and insights!
+        </div>
         <main className="flex-auto min-w-0 flex flex-col md:px-0">
           <div className="min-w-full text-center">{children}</div>
         </main>
